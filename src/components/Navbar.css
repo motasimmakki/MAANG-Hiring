@@ -3,5 +3,13 @@
     box-sizing: border-box;
 }
 .navbar-cont {
-    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.navbar-cont * {
+    margin-right: 1rem;
+}
+.navbar-logo {
+    max-width: 140px;
 }
