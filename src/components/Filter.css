@@ -3,7 +3,8 @@
     box-sizing: border-box;
 }
 .filter-cont {
-    /* height: 80px; */
+    margin-top: 0.2rem;
     height: 6rem;
     border: 2px solid red;
+    background-color: whitesmoke;
 }

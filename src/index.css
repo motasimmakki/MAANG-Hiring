@@ -1,9 +1,7 @@
-html, body {
+body {
   margin: 0;
-  /* width: 500px; */
-  /* height: 600px; */
   width: 32rem;
-  height: 38rem;
+  /* height: 36rem; */
 }
 
 code {
