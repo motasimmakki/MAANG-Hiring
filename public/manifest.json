@@ -5,10 +5,21 @@
   "manifest_version": 3,
   "action": {
     "default_title": "MAANG Hiring",
-    "default_popup": "index.html",
     "default_icon": {
       "16": "logo192.png",
       "128": "logo192.png"
     }
-  }
+  },
+  "minimum_chrome_version": "92",
+  "background": {
+    "service_worker": "scrapper.js",
+    "type": "module"
+  },
+  "permissions": [
+    "scripting",
+    "tabs",
+    "activeTab",
+    "storage",
+    "unlimitedStorage"
+  ]
 }
