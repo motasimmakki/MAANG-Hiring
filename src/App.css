@@ -3,3 +3,6 @@
     box-sizing: border-box;
     user-select: none;
 }
+body {
+    border: 1px solid black;
+}
