@@ -1,3 +1,4 @@
+// Testing phase.
 const puppeteer = require('puppeteer');
 
 async function scrapVacancies(url) {
@@ -6,30 +7,22 @@ async function scrapVacancies(url) {
     await page.goto(url);
 
     // Extracting job titles.
-    const job_titles = await page.$$eval(".job-title", 
+    const job_titles = await page.$$eval(".e1rpdjew0", 
         element => element.map(
             title => title.textContent
         )
     );
     console.log(job_titles);
 
-    // Extracting Job_id.
-    const location_and_id = await page.$$eval(".location-and-id", 
+    // Extracting job locations.
+    const job_locations = await page.$$eval(".e13jx43x2:not(div)", 
         element => element.map(
             title => title.textContent
         )
     );
-    console.log(location_and_id);
-
-    // Extracting Job posting date.
-    const job_posting = await page.$$eval(".posting-date", 
-        element => element.map(
-            title => title.textContent
-        )
-    );
-    console.log(job_posting);
+    console.log(job_locations);
 
     browser.close();
 }
 
-scrapVacancies('https://www.amazon.jobs/en/teams/in');
+scrapVacancies('https://jobs.netflix.com/search?location=Mumbai%2C%20India');
