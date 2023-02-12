@@ -15,7 +15,7 @@ async function scrapVacancies(url) {
     console.log(job_titles);
         
     // Extracting job locations.
-    const job_locations = await page.$$eval("._8see", 
+    const job_locations = await page.$$eval("._8seh>._97fe>._8sec>._8see", 
         element => element.map(
             title => title.textContent
         )
