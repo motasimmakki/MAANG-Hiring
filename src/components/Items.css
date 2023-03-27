@@ -2,8 +2,29 @@
     margin: 0;
     box-sizing: border-box;
 }
-/* .items-cont {
+.items-cont {
     width: 100%;
     height: 100%;
     background-color: white;
-} */
+    overflow-y: scroll;
+}
+/* Hide Scrollbar */
+.items-cont {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.items-cont::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.item {
+    width: 100%;
+    height: 5rem;
+    margin-bottom: 0.2rem;
+    background-color: aqua;
+    border: 2px solid darkgreen;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+}
+.item:last-child {
+    margin-bottom: 0rem;
+}

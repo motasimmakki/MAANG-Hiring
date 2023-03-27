@@ -4,7 +4,8 @@
 }
 .list-cont {
     margin-top: 0.2rem;
-    height: 25rem;
+    height: 26.3rem;
     border: 1px solid green;
     background-color: wheat;
+    padding: 0.2rem;
 }

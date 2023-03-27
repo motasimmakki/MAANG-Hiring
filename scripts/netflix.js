@@ -32,14 +32,14 @@ async function scrapVacancies(url) {
 }
 
 scrapVacancies('https://jobs.netflix.com/search?location=Mumbai%2C%20India').then((data) => {
-    const fileData = fs.readFileSync('data.json');
+    const fileData = fs.readFileSync('./src/data.json');
     // console.log(fileData.length);
     let newDataJSON = {netflix: data};
     if(fileData.length) {
         newDataJSON = {...newDataJSON, ...(JSON.parse(fileData))};
     }
     const newFileData = JSON.stringify(newDataJSON);
-    fs.writeFileSync('data.json', newFileData, (error) => {
+    fs.writeFileSync('./src/data.json', newFileData, (error) => {
         if(error) {
             console.log(error);
         }

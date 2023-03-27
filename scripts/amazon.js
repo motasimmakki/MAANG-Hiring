@@ -40,7 +40,7 @@ async function scrapVacancies(url) {
 }
 
 scrapVacancies('https://www.amazon.jobs/en/teams/in').then((data) => {
-    const fileData = fs.readFileSync('data.json');
+    const fileData = fs.readFileSync('./src/data.json');
     // console.log(fileData.length);
     let newDataJSON = {amazon: data};
     if(fileData.length) {
@@ -48,7 +48,7 @@ scrapVacancies('https://www.amazon.jobs/en/teams/in').then((data) => {
     }
     // console.log(newDataJSON);
     const newFileData = JSON.stringify(newDataJSON);
-    fs.writeFileSync('data.json', newFileData, (error) => {
+    fs.writeFileSync('./src/data.json', newFileData, (error) => {
         if(error) {
             console.log(error);
         }
