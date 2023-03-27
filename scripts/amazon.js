@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 async function scrapVacancies(url) {
     const browser = await puppeteer.launch();
@@ -11,7 +12,7 @@ async function scrapVacancies(url) {
             title => title.textContent
         )
     );
-    console.log(job_titles);
+    // console.log(job_titles);
 
     // Extracting Job_id.
     const location_and_id = await page.$$eval(".location-and-id", 
@@ -19,7 +20,7 @@ async function scrapVacancies(url) {
             title => title.textContent
         )
     );
-    console.log(location_and_id);
+    // console.log(location_and_id);
 
     // Extracting Job posting date.
     const job_posting = await page.$$eval(".posting-date", 
@@ -27,9 +28,32 @@ async function scrapVacancies(url) {
             title => title.textContent
         )
     );
-    console.log(job_posting);
+    // console.log(job_posting);
 
     browser.close();
+    
+    return {
+        job_titles, 
+        location_and_id, 
+        job_posting
+    };
 }
 
-scrapVacancies('https://www.amazon.jobs/en/teams/in');
+scrapVacancies('https://www.amazon.jobs/en/teams/in').then((data) => {
+    const fileData = fs.readFileSync('data.json');
+    // console.log(fileData.length);
+    let newDataJSON = {amazon: data};
+    if(fileData.length) {
+        newDataJSON = {...newDataJSON, ...(JSON.parse(fileData))};
+    }
+    // console.log(newDataJSON);
+    const newFileData = JSON.stringify(newDataJSON);
+    fs.writeFileSync('data.json', newFileData, (error) => {
+        if(error) {
+            console.log(error);
+        }
+    });
+    console.log("[Amazon] Data Saved Successfully!");
+}).catch((error) => {
+    console.log(error);
+});
