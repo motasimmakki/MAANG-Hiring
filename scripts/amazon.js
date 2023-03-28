@@ -3,39 +3,60 @@ const fs = require('fs');
 
 async function scrapVacancies(url) {
     const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+    let page = await browser.newPage();
     await page.goto(url);
 
-    // Extracting job titles.
-    const job_titles = await page.$$eval(".job-title", 
-        element => element.map(
-            title => title.textContent
-        )
-    );
-    // console.log(job_titles);
+    let job_titles = [], location_and_id = [], 
+        job_posting = [], job_link = [];
 
-    // Extracting Job_id.
-    const location_and_id = await page.$$eval(".location-and-id", 
-        element => element.map(
-            title => title.textContent
-        )
-    );
-    // console.log(location_and_id);
+    do {
+        // Extracting job titles.
+        job_titles = [...job_titles, ...(await page.$$eval(".job-title", 
+            element => element.map(
+                title => title.textContent
+            )
+        ))];
+        // console.log(job_titles);
+    
+        // Extracting Job_id.
+        location_and_id = [...location_and_id, ...(await page.$$eval(".location-and-id", 
+            element => element.map(
+                title => title.textContent
+            )
+        ))];
+        // console.log(location_and_id);
+    
+        // Extracting Job posting date.
+        job_posting = [...job_posting, ...(await page.$$eval(".posting-date", 
+            element => element.map(
+                title => title.textContent
+            )
+        ))];
+        // console.log(job_posting);
+    
+        // Extracting job link.
+        job_link = [...job_link, ...(await page.$$eval(".job-link", 
+            element => element.map(
+                title => "https://www.amazon.jobs" + title.getAttribute("href")
+            )
+        ))];
+        // console.log(job_link);
 
-    // Extracting Job posting date.
-    const job_posting = await page.$$eval(".posting-date", 
-        element => element.map(
-            title => title.textContent
-        )
-    );
-    // console.log(job_posting);
+        if(await page.$(".pagination-control>.btn.circle.right")) {
+            await page.click(".pagination-control>.btn.circle.right");
+            await page.goto(await page.url());
+        } else {
+            break;
+        }
+    } while(true);
 
     browser.close();
     
     return {
         job_titles, 
         location_and_id, 
-        job_posting
+        job_posting,
+        job_link
     };
 }
 
