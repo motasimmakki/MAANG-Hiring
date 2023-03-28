@@ -16,6 +16,13 @@
 .items-cont::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+.item-link:link, .item-link:visited, .item-link:hover, .item-link:active { 
+    text-decoration: none; 
+}
+.single-item-cont {
+    width: 100%;
+    height: 100%;
+}
 .item {
     width: 100%;
     height: 5rem;
@@ -24,7 +31,35 @@
     border: 2px solid darkgreen;
     box-sizing: border-box;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 .item:last-child {
     margin-bottom: 0rem;
+}
+.item-title, .item-posting, .item-location {
+    font-family: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    display: inline-block;
+    color: #111111;
+}
+.item-title {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    text-align: left;
+    margin-top: 1rem;
+    margin-left: 0.8rem;
+}
+.item-posting {
+    font-size: 0.8rem;
+    line-height: 0.8;
+    float: right;
+    margin-top: 1.3rem;
+    margin-right: 0.8rem;
+}
+.item-location {
+    font-size: 0.8rem;
+    line-height: 0.8;
+    text-align: left;
+    margin-top: 0.5rem;
+    margin-left: 0.8rem;
 }
