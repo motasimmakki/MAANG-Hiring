@@ -44,7 +44,7 @@ async function scrapVacancies(url) {
 
         if(await page.$(".pagination-control>.btn.circle.right")) {
             await page.click(".pagination-control>.btn.circle.right");
-            await page.goto(await page.url());
+            await page.goto(page.url());
         } else {
             break;
         }
