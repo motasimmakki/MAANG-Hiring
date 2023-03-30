@@ -7,31 +7,56 @@ async function scrapVacancies(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
-    // Extracting job titles.
-    const job_titles = await page.$$eval(".e1rpdjew0", 
-        element => element.map(
-            title => title.textContent
-        )
-    );
-    // console.log(job_titles);
+    let job_titles = [], job_locations = [], job_link = [];
 
-    // Extracting job locations.
-    const job_locations = await page.$$eval(".e13jx43x2:not(div)", 
-        element => element.map(
-            title => title.textContent
-        )
-    );
-    // console.log(job_locations);
+    do {
+        // Extracting job titles.
+        // Extracting using very first class.
+        await page.waitForSelector('.e1rpdjew0');
+        job_titles = [...job_titles, ...(await page.$$eval(".e1rpdjew0", 
+            element => element.map(
+                    title => title.textContent
+                )
+        ))];
+        // console.log(job_titles);
+    
+        // Extracting job locations.
+        await page.waitForSelector('.e13jx43x2:not(div)');
+        job_locations = [...job_locations, ...(await page.$$eval(".e13jx43x2:not(div)", 
+            element => element.map(
+                title => title.textContent
+            )
+        ))];
+        // console.log(job_locations);
+    
+        // Extracting job link.
+        await page.waitForSelector('.e1rpdjew3>.essqqm81');
+        job_link = [...job_link, ...(await page.$$eval(".e1rpdjew3>.essqqm81", 
+            element => element.map(
+                title => "https://www.jobs.netflix.com" + title.getAttribute("href")
+            )
+        ))];
+        // console.log(job_link);
+
+        await page.waitForSelector('button[aria-label="Next Page"]');
+        if(await page.$('button[aria-label="Next Page"][disabled]')) {
+            break;
+        } else {
+            await page.click('button[aria-label="Next Page"]');
+            await page.goto(await page.url());
+        }
+    } while(true);
 
     browser.close();
 
     return {
         job_titles,
-        job_locations
+        job_locations,
+        job_link
     };
 }
 
-scrapVacancies('https://jobs.netflix.com/search?location=Mumbai%2C%20India').then((data) => {
+scrapVacancies('https://jobs.netflix.com/search').then((data) => {
     const fileData = fs.readFileSync('./src/data.json');
     // console.log(fileData.length);
     let newDataJSON = {netflix: data};
