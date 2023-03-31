@@ -15,9 +15,9 @@ export default function Items() {
                     <div className='item' key={idx}>
                         <a className='item-link' href={link} target='_blank' rel='noreferrer' key={idx}>
                             <div className='single-item-cont'>
-                                <h3 className='item-title'>{data[company].job_titles.at(idx)}</h3>
+                                <h3 className='item-title'>{data[company].job_title.at(idx)}</h3>
                                 <h3 className='item-posting'>{data[company].job_posting.at(idx)}</h3>
-                                <h3 className='item-location'>{data[company].location_and_id.at(idx)}</h3>
+                                <h3 className='item-location'>{data[company].job_location.at(idx)}</h3>
                             </div>        
                         </a>
                     </div>

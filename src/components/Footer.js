@@ -1,10 +1,16 @@
 import React from 'react'
 import './Footer.css'
+import 'font-awesome/css/font-awesome.min.css';
 
 export default function Footer() {
   return (
     <div className='footer-cont'>
-        <p><strong>&lt; / &gt;</strong> with 🧡 By . . .</p>
+        <p>
+          <a href="https://github.com/motasimmakki/MAANG-Hiring" target="_blank">
+            <i className="fa fa-github fa-bounce github-icon"></i>
+          </a>
+          <strong>&lt; / &gt;</strong> with 🧡 By . . .
+        </p>
     </div>
   )
 }
