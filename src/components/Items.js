@@ -1,12 +1,18 @@
 import React from 'react'
 import data from '../data.json';
+import metaLogo from'../images/meta.png';
 import amazonLogo from'../images/amazon.png';
+import appleLogo from'../images/apple.png';
 import netflixLogo from'../images/netflix.png';
+import googleLogo from'../images/google.png';
 
 export default function Items() {
     const logoPaths = {
+        meta: metaLogo,
         amazon : amazonLogo,
-        netflix: netflixLogo
+        apple: appleLogo,
+        netflix: netflixLogo,
+        google: googleLogo
     }
     if(Object.keys(data).length) {
         console.log(data);
@@ -24,12 +30,15 @@ export default function Items() {
                                 {
                                 (data[company].job_posting)?
                                     <h3 className='item-posting'>{data[company].job_posting.at(idx)}</h3>
-                                : <h3 className='item-posting'><strong>. . .</strong></h3>
+                                : <h3 className='item-posting'><strong>_ _ _</strong></h3>
                                 }
                                 <h3 className='item-title'>
                                     <img src={logoPaths[company]} className='company-icon' alt={company+'-logo'}></img>
-                                    {/* <i className="fa fa-amazon company-icon"></i> */}
-                                    {data[company].job_title.at(idx)}
+                                    {
+                                    ((data[company].job_title.at(idx).length) > 45)?
+                                        data[company].job_title.at(idx).substring(0, data[company].job_title.at(idx).substring(0, 45).lastIndexOf(' ')) + "..."
+                                    : data[company].job_title.at(idx)
+                                    }
                                 </h3>
                                 <h3 className='item-location'>{data[company].job_location.at(idx)}</h3>
                             </div>        

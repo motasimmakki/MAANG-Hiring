@@ -58,6 +58,9 @@
     margin-right: 0.4rem;
     max-height: 1.5rem;
     vertical-align: middle;
+    background-color: white;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
 }
 .item-title {
     font-size: 1.2rem;
