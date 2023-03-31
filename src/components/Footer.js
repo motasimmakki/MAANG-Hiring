@@ -6,8 +6,8 @@ export default function Footer() {
   return (
     <div className='footer-cont'>
         <p>
-          <a href="https://github.com/motasimmakki/MAANG-Hiring" target="_blank">
-            <i className="fa fa-github fa-bounce github-icon"></i>
+          <a href="https://github.com/motasimmakki/MAANG-Hiring" target="_blank" rel="noreferrer">
+            <i className="fa fa-github github-icon"></i>
           </a>
           <strong>&lt; / &gt;</strong> with 🧡 By . . .
         </p>

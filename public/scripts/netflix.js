@@ -7,27 +7,27 @@ async function scrapVacancies(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
-    let job_titles = [], job_locations = [], job_link = [];
+    let job_title = [], job_location = [], job_link = [];
 
     do {
         // Extracting job titles.
         // Extracting using very first class.
         await page.waitForSelector('.e1rpdjew0');
-        job_titles = [...job_titles, ...(await page.$$eval(".e1rpdjew0", 
+        job_title = [...job_title, ...(await page.$$eval(".e1rpdjew0", 
             element => element.map(
                     title => title.textContent
                 )
         ))];
-        // console.log(job_titles);
+        // console.log(job_title);
     
         // Extracting job locations.
         await page.waitForSelector('.e13jx43x2:not(div)');
-        job_locations = [...job_locations, ...(await page.$$eval(".e13jx43x2:not(div)", 
+        job_location = [...job_location, ...(await page.$$eval(".e13jx43x2:not(div)", 
             element => element.map(
                 title => title.textContent
             )
         ))];
-        // console.log(job_locations);
+        // console.log(job_location);
     
         // Extracting job link.
         await page.waitForSelector('.e1rpdjew3>.essqqm81');
@@ -50,8 +50,8 @@ async function scrapVacancies(url) {
     browser.close();
 
     return {
-        job_titles,
-        job_locations,
+        job_title,
+        job_location,
         job_link
     };
 }

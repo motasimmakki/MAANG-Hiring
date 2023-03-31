@@ -6,30 +6,30 @@ async function scrapVacancies(url) {
     let page = await browser.newPage();
     await page.goto(url);
 
-    let job_titles = [], location_and_id = [], 
+    let job_title = [], job_location = [], 
         job_posting = [], job_link = [];
 
     do {
         // Extracting job titles.
         await page.waitForSelector('.gc-card__title');
-        job_titles = [...job_titles, ...(await page.$$eval(".gc-card__title", 
+        job_title = [...job_title, ...(await page.$$eval(".gc-card__title", 
             element => element.map(
                 title => title.textContent.trim()
             )
         ))];
-        // console.log(job_titles);
+        // console.log(job_title);
     
         // Extracting Job_id.
         await page.waitForSelector('.gc-job-tags');
-        location_and_id = [...location_and_id, ...(await page.$$eval('.gc-job-tags', 
+        job_location = [...job_location, ...(await page.$$eval('.gc-job-tags', 
             element => element.map(
                 title => title.textContent.trim()
             )
         ))];
-        location_and_id = location_and_id.map(
+        job_location = job_location.map(
             s => s.split('\n').filter(s => s).join(' ').split(' ').filter(s => s).join(' ')
         );
-        // console.log(location_and_id);
+        // console.log(job_location);
     
         // Extracting job link.
         await page.waitForSelector('.gc-card__container>.gc-card');
@@ -52,8 +52,8 @@ async function scrapVacancies(url) {
     browser.close();
     
     return {
-        job_titles, 
-        location_and_id, 
+        job_title, 
+        job_location, 
         job_posting,
         job_link
     };

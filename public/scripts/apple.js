@@ -6,25 +6,25 @@ async function scrapVacancies(url) {
     let page = await browser.newPage();
     await page.goto(url);
 
-    let job_titles = [], location_and_id = [], 
+    let job_title = [], job_location = [], 
         job_posting = [], job_link = [];
 
     do {
         // Extracting job titles.
-        job_titles = [...job_titles, ...(await page.$$eval(".table--advanced-search__title", 
+        job_title = [...job_title, ...(await page.$$eval(".table--advanced-search__title", 
             element => element.map(
                 title => title.textContent
             )
         ))];
-        // console.log(job_titles);
+        // console.log(job_title);
     
         // Extracting Job_id.
-        location_and_id = [...location_and_id, ...(await page.$$eval(".table-col-2>span:last-of-type", 
+        job_location = [...job_location, ...(await page.$$eval(".table-col-2>span:last-of-type", 
             element => element.map(
                 title => title.textContent
             )
         ))];
-        // console.log(location_and_id);
+        // console.log(job_location);
     
         // Extracting Job posting date.
         job_posting = [...job_posting, ...(await page.$$eval(".table--advanced-search__date", 
@@ -53,8 +53,8 @@ async function scrapVacancies(url) {
     browser.close();
     
     return {
-        job_titles, 
-        location_and_id, 
+        job_title, 
+        job_location, 
         job_posting,
         job_link
     };
