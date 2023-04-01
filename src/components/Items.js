@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import data from '../data.json';
 import metaLogo from'../images/meta.png';
 import amazonLogo from'../images/amazon.png';
@@ -19,7 +19,15 @@ export default function Items() {
     } else {
         // NOT A SINGLE JOB AVAILABLE!
     }
+    const [isLoading, setIsLoading] = useState(true);
+    function waitForAWhile() {
+        return new Promise((resolve) => setTimeout(() => resolve(), 2500));
+    }
+    useEffect(() => {
+        waitForAWhile().then(() => setIsLoading(false));
+    }, []);
     return (
+        (isLoading)? null:
         <div className='items-cont'>
             {
             Object.keys(data).map((company, idx) => (

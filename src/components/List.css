@@ -3,9 +3,35 @@
     box-sizing: border-box;
 }
 .list-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 0.2rem;
     height: 21.1rem;
     border: 1px solid green;
     background-color: wheat;
     padding: 0.2rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
 }
+.list-cont::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.loader:empty {
+    width: 5em;
+    height: 5em;
+    border: 1em solid rgba(0, 0, 0, 0.2);
+    border-left: 1em solid #000000;
+    border-radius: 50%;
+    animation: load8 1s infinite linear;
+  }
+  
+  @keyframes load8 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

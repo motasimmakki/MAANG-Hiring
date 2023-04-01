@@ -6,8 +6,7 @@ async function scrapVacancies(url) {
     let page = await browser.newPage();
     await page.goto(url);
 
-    let job_title = [], job_location = [], 
-        job_posting = [], job_link = [];
+    let job_title = [], job_location = [], job_link = [];
 
     do {
         // Extracting job titles.
@@ -52,9 +51,8 @@ async function scrapVacancies(url) {
     browser.close();
     
     return {
-        job_title, 
-        job_location, 
-        job_posting,
+        job_title,
+        job_location,
         job_link
     };
 }
