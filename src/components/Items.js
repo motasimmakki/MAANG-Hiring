@@ -20,12 +20,16 @@ export default function Items({data}) {
     //     // NOT A SINGLE JOB AVAILABLE!
     // }
     const [isLoading, setIsLoading] = useState(true);
-    function waitForAWhile() {
-        return new Promise((resolve) => setTimeout(() => resolve(), 2500));
+    function waitForAWhile(time) {
+        return new Promise((resolve) => setTimeout(() => resolve(), time));
     }
     useEffect(() => {
-        waitForAWhile().then(() => setIsLoading(false));
+        waitForAWhile(2500).then(() => setIsLoading(false));
     }, []);
+    useEffect(() => {
+        setIsLoading(true);
+        waitForAWhile(1000).then(() => setIsLoading(false));
+    }, [data]);
     return (
         (isLoading)? null:
         <div className='items-cont'>

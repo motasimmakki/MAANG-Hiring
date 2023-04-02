@@ -5,6 +5,10 @@ import { useState } from 'react';
 export default function Filter({filteredData, filterData, filterStatus}) {
   const [company, setCompany] = useState("maang");
 
+  const filterByKeyword = (event) => {
+    console.log(event.target.value);
+  }
+
   const filterByCompany = (event) => {
     filterStatus(true);
     let selectedCompany = event.target.value;
@@ -21,7 +25,7 @@ export default function Filter({filteredData, filterData, filterStatus}) {
   return (
     <div className='filter-cont'>
         <div className='search-bar-cont'>
-          <input className='search-bar' placeholder='Search by title...'></input>
+          <input className='search-bar' placeholder='Search by title...' onKeyUp={filterByKeyword}></input>
         </div>
         <div className='dropdown-cont'>
           <select className='dropdown filter-company' value={company} onChange={filterByCompany}>
