@@ -4,9 +4,47 @@ import { useState } from 'react';
 
 export default function Filter({filteredData, filterData, filterStatus}) {
   const [company, setCompany] = useState("maang");
+  const [historyData, setHistoryData] = useState([]);
 
   const filterByKeyword = (event) => {
-    console.log(event.target.value);
+    let keyword = event.target.value;
+    // console.log(event.target.value);
+    if(!keyword.length) {
+      filterData(data);
+      setHistoryData([]);
+    } else {
+      // Tracking backspace search history.
+      if(event.keyCode === 8) {
+        filterData(historyData.at(historyData.length-1));
+        historyData.pop();
+      } else {
+        setHistoryData([...historyData, filteredData]);
+        let newData = {};
+        Object.keys(filteredData).map((company) => {
+          let job_title = [], job_posting = [], job_location = [], job_link = [];
+          filteredData[company].job_title.filter((title, idx) => {
+                if(title.toLowerCase().includes(keyword.toLowerCase())) {
+                  job_title.push(filteredData[company].job_title[idx]);
+                  job_location.push(filteredData[company].job_location[idx]);
+                  if(filteredData[company].job_posting) {
+                    job_posting.push(filteredData[company].job_posting[idx]);
+                  }
+                  job_link.push(filteredData[company].job_link[idx]);
+                }
+          });
+          newData[company] = {
+            job_title,
+            job_location,
+            job_link
+          };
+          if(job_posting.length) {
+            newData[company] = {...newData[company], job_posting};
+          }
+        });
+        // console.log(newData);
+        filterData(newData);
+      }
+    }
   }
 
   const filterByCompany = (event) => {
