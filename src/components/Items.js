@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import data from '../data.json';
+// import data from '../data.json';
 import metaLogo from'../images/meta.png';
 import amazonLogo from'../images/amazon.png';
 import appleLogo from'../images/apple.png';
 import netflixLogo from'../images/netflix.png';
 import googleLogo from'../images/google.png';
 
-export default function Items() {
+export default function Items({data}) {
     const logoPaths = {
         meta: metaLogo,
         amazon : amazonLogo,
@@ -14,11 +14,11 @@ export default function Items() {
         netflix: netflixLogo,
         google: googleLogo
     }
-    if(Object.keys(data).length) {
-        console.log(data);
-    } else {
-        // NOT A SINGLE JOB AVAILABLE!
-    }
+    // if(Object.keys(data).length) {
+    //     console.log(data);
+    // } else {
+    //     // NOT A SINGLE JOB AVAILABLE!
+    // }
     const [isLoading, setIsLoading] = useState(true);
     function waitForAWhile() {
         return new Promise((resolve) => setTimeout(() => resolve(), 2500));
