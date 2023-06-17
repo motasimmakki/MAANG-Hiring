@@ -2,8 +2,104 @@
     margin: 0;
     box-sizing: border-box;
 }
-/* .items-cont {
+.items-cont {
     width: 100%;
-    height: 100%;
+    display: block;
+    border-radius: 10px;
+    /* border: 2px solid green; */
+    padding-top: 20px;
+    /* background-color: white; */
+    background-color: transparent;
+    overflow-y: scroll;
+}
+/* Hide Scrollbar */
+.items-cont {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.items-cont::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.item-link:link, .item-link:visited, .item-link:hover, .item-link:active { 
+    text-decoration: none; 
+}
+
+/* fix the single container */
+.single-item-cont {
+    display: absolute;
+}
+.single-item-cont:hover{
+    background-color: aqua;
+    /* box-shadow: 4px; */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    border-radius: 4px;
+}
+.item {
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    /* border-radius: 0.5rem; */
+    cursor: pointer;
+}
+.item:last-child {
+    margin-bottom: 0rem;
+}
+.item-title, .item-posting, .item-location {
+    font-family: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    display: inline-block;
+    color: #111111;
+}
+.item-posting {
+    /* display: block; */
+    /* position:relative; */
+    float: right;
+    margin-top: 10px;
+    margin-bottom: -15px;
+    /* left: 400px;
+    top: 10px; */
+    z-index: -10;
+    font-style: italic;
+    font-size: 0.8rem;
+    line-height: 0.8;
+    margin-right: 0.5rem;
+    overflow: hidden;
+}
+/* .item-title-cont {} */
+.company-icon {
+    margin-right: 0.4rem;
+    max-height: 1.5rem;
+    vertical-align: middle;
     background-color: white;
-} */
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+}
+.item-title {
+    /* position:relative; */
+    font-size: 1.1rem;
+    font-weight: bold;
+    z-index: 1;
+    line-height: 1.2;
+    text-align: left;
+    /* margin-top: 0.2rem; */
+    margin-left: 0.5rem;
+    /* border: 1px solid green; */
+    width: 30rem;
+    vertical-align: middle;
+}
+.item-location {
+    font-size: 0.8rem;
+    line-height: 0.8;
+    text-align: left;
+    /* margin-top: 0.5rem; */
+    margin-left: 0.5rem;
+    padding: 0 0 2px 30px;
+    font-style: italic;
+    /* border: 1px solid green; */
+}
+.loader{
+    display: block;
+    height: 115%;
+    padding-top: 2px;
+    margin-top: 2px;
+}

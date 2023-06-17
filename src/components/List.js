@@ -1,12 +1,12 @@
-import React from 'react'
 import Items from './Items'
 import './Items.css';
 
-
-export default function List() {
+export default function List({data, filterStatus}) {
   return (
     <div className='list-cont'>
-        <Items/>
+      <div className='loader'>
+        <Items data={data} filterStatus={filterStatus}/>
+      </div>
     </div>
   )
 }

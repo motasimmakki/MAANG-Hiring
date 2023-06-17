@@ -8,12 +8,12 @@
     "default_icon": {
       "16": "logo192.png",
       "128": "logo192.png"
-    }
+    },
+    "default_popup": "index.html"
   },
   "minimum_chrome_version": "92",
-  "background": {
-    "service_worker": "scrapper.js",
-    "type": "module"
+  "background": { 
+    "service_worker": "scrapper.js"
   },
   "permissions": [
     "scripting",
@@ -21,5 +21,14 @@
     "activeTab",
     "storage",
     "unlimitedStorage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "scripts/amazon.js"
+      ],
+      "run_at": "document_start"
+    }
   ]
 }
