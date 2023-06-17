@@ -27,6 +27,7 @@
 /* fix the single container */
 .single-item-cont {
     display: absolute;
+    height: 48px;
 }
 .single-item-cont:hover{
     background-color: aqua;
@@ -51,18 +52,20 @@
     color: #111111;
 }
 .item-posting {
-    /* display: block; */
-    /* position:relative; */
-    float: right;
-    margin-top: 10px;
-    margin-bottom: -15px;
+    /* display: inline; */
+    position:relative;
+    /* float: right; */
+    /* margin-top: 20px;
+    margin-bottom: -15px; */
     /* left: 400px;
     top: 10px; */
-    z-index: -10;
+    /* z-index: -10; */
+    left: 65%;
+    top:30px;
     font-style: italic;
     font-size: 0.8rem;
     line-height: 0.8;
-    margin-right: 0.5rem;
+    /* margin-right: 0.5rem; */
     overflow: hidden;
 }
 /* .item-title-cont {} */
@@ -75,19 +78,22 @@
     border-radius: 0.5rem;
 }
 .item-title {
-    /* position:relative; */
+    position:relative;
+    top:-10px;
     font-size: 1.1rem;
     font-weight: bold;
     z-index: 1;
-    line-height: 1.2;
+    /* line-height: 1.2; */
     text-align: left;
-    /* margin-top: 0.2rem; */
+    margin-top:-10px;
     margin-left: 0.5rem;
     /* border: 1px solid green; */
     width: 30rem;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 .item-location {
+    position: relative;
+    top:-10px;
     font-size: 0.8rem;
     line-height: 0.8;
     text-align: left;
