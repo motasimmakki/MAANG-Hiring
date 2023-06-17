@@ -91,6 +91,7 @@ export default function Filter({filteredData, filterData, filterStatus}) {
             <option value="amazon">Amazon</option>
             <option value="netflix">Netflix</option>
             <option value="google">Google</option>
+            <option value="adobe">Adobe</option>
           </select>
           <select className='dropdown filter-location'>
             <option value="" className=''>. . .</option>
