@@ -2,13 +2,13 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+/* Main container that will hold the Div of Jobs */
 .items-cont {
-    width: 100%;
+    width: 99%;
     display: block;
     border-radius: 10px;
-    /* border: 2px solid green; */
-    padding-top: 20px;
-    /* background-color: white; */
+    padding-top: 10px;
     background-color: transparent;
     overflow-y: scroll;
 }
@@ -23,51 +23,53 @@
 .item-link:link, .item-link:visited, .item-link:hover, .item-link:active { 
     text-decoration: none; 
 }
+/* single Div of a Job:title,posting,location,icon */
+.item{ 
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 10;
+    height: 80px;
+    margin: 6px;
+    padding: 10px;
+    /* border: 2px solid #fff; */
+    background-color: rgba(38, 38,38);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.item:hover{
+    background-color: rgba(42, 54, 52, 1);
+}
 
 /* fix the single container */
 .single-item-cont {
     display: absolute;
     height: 48px;
+    /* margin: 3px; */
 }
 .single-item-cont:hover{
-    background-color: aqua;
+    /* background-color: rgba(38, 38,38); */
     /* box-shadow: 4px; */
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     border-radius: 4px;
 }
-.item {
-    width: 100%;
-    border: 1px solid black;
-    box-sizing: border-box;
-    /* border-radius: 0.5rem; */
-    cursor: pointer;
-}
-.item:last-child {
-    margin-bottom: 0rem;
-}
+/* job information  */
 .item-title, .item-posting, .item-location {
     font-family: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     display: inline-block;
-    color: #111111;
+    color: #fff;
 }
 .item-posting {
-    /* display: inline; */
-    position:relative;
-    /* float: right; */
-    /* margin-top: 20px;
-    margin-bottom: -15px; */
-    /* left: 400px;
-    top: 10px; */
-    /* z-index: -10; */
-    left: 65%;
-    top:30px;
+    float: right;
+    padding: 2px 4px;
+    margin: 4px;
     font-style: italic;
-    font-size: 0.8rem;
+    font-weight: bold;
+    font-size: 0.7rem;
     line-height: 0.8;
-    /* margin-right: 0.5rem; */
     overflow: hidden;
 }
+
 /* .item-title-cont {} */
 .company-icon {
     margin-right: 0.4rem;
@@ -79,33 +81,35 @@
 }
 .item-title {
     position:relative;
-    top:-10px;
+    top:-6px;
     font-size: 1.1rem;
     font-weight: bold;
     z-index: 1;
-    /* line-height: 1.2; */
     text-align: left;
-    margin-top:-10px;
+    margin-top:-8px;
     margin-left: 0.5rem;
-    /* border: 1px solid green; */
     width: 30rem;
-    /* vertical-align: middle; */
+}
+
+/* Job icon */
+.item-title>img{
+    position: relative;
+    top:6px;
 }
 .item-location {
     position: relative;
-    top:-10px;
+    top:-2px;
     font-size: 0.8rem;
     line-height: 0.8;
     text-align: left;
-    /* margin-top: 0.5rem; */
     margin-left: 0.5rem;
     padding: 0 0 2px 30px;
     font-style: italic;
-    /* border: 1px solid green; */
 }
+/* loader that appear after scrapping data */
 .loader{
     display: block;
-    height: 115%;
-    padding-top: 2px;
-    margin-top: 2px;
+    height: 100%;
+    width:100%;
+    margin-top: -12px;
 }

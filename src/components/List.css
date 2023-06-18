@@ -6,12 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-top: 0.2rem; */
-
-  height: 21.1rem;
-  border-top: 2px solid black;
-  background-color: white;
-  /* padding-left: 0.4rem; */
+  height: 22rem;
+  background-color: rgb(32, 33, 36);
   overflow-y: scroll;
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
