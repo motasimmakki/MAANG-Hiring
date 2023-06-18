@@ -23,4 +23,5 @@
 }
 .footer-cont a {
     vertical-align: middle;
+    z-index: -10;
 }
