@@ -82,8 +82,13 @@ export default function Filter({filteredData, filterData, filterStatus}) {
     <div className='filter-cont'>
         <div className='search-bar-cont'>
           <input className='search-bar' placeholder='Search by title...' onKeyDown={disableDelete} onKeyUp={filterByKeyword}></input>
+          <button type="submit" className="search-button">
+    <i className="fa fa-search"></i>
+  </button>
         </div>
         <div className='dropdown-cont'>
+        <div className='filter'>
+        <i className="filter-icon fa  fa-list"></i>
           <select className='dropdown filter-company' value={company} onChange={filterByCompany}>
             <option value="maang">MAANG</option>
             <option value="meta" className='meta-dropdown'>Meta</option>
@@ -92,10 +97,15 @@ export default function Filter({filteredData, filterData, filterStatus}) {
             <option value="netflix">Netflix</option>
             <option value="google">Google</option>
             <option value="adobe">Adobe</option>
+            <option value="oracle">Oracle</option>
           </select>
+        </div>
+        <div className='filter'>
+        <i className="filter-icon fa fa-map-marker"></i>
           <select className='dropdown filter-location'>
             <option value="" className=''>. . .</option>
           </select>
+        </div>
         </div>
     </div>
   )

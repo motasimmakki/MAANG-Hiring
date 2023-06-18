@@ -6,6 +6,7 @@ import appleLogo from'../images/apple.png';
 import netflixLogo from'../images/netflix.png';
 import googleLogo from'../images/google.png';
 import adobeLogo from'../images/adobe.png';
+import oracleLogo from'../images/oracle.png';
 
 export default function Items({data}) {
     const logoPaths = {
@@ -14,7 +15,8 @@ export default function Items({data}) {
         apple: appleLogo,
         netflix: netflixLogo,
         google: googleLogo,
-        adobe: adobeLogo
+        adobe: adobeLogo,
+        oracle: oracleLogo
     }
     // if(Object.keys(data).length) {
     //     console.log(data);
