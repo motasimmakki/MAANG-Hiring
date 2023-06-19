@@ -15,15 +15,17 @@ function App() {
   function updateData(newData) {
     setViewableData(newData);
   }
-  function updateFilterStatus(){
+  function updateFilterStatus() {
     setIsFiltered(true);
   }
   return (
     <div className="App">
-      <Navbar/>
-      <Filter filteredData={viewableData} filterData={updateData} filterStatus={updateFilterStatus}/>
-      <List data={viewableData} filterStatus={isFiltered}/>
-      <Footer/>
+      <div className='header'>
+        <Navbar />
+        <Filter filteredData={viewableData} filterData={updateData} filterStatus={updateFilterStatus} />
+      </div>
+      <List data={viewableData} filterStatus={isFiltered} />
+      <Footer />
     </div>
   );
 }

@@ -2,26 +2,26 @@ import React from 'react'
 import data from '../../src/data.json';
 import { useState } from 'react';
 
-export default function Filter({filteredData, filterData, filterStatus}) {
+export default function Filter({ filteredData, filterData, filterStatus }) {
   const [company, setCompany] = useState("maang");
   const [historyData, setHistoryData] = useState([]);
 
   const disableDelete = (event) => {
     // Disable 'delete' key.
-    if(event.keyCode === 46) {
+    if (event.keyCode === 46) {
       event.preventDefault();
     }
   }
 
   const filterByKeyword = (event) => {
     // Preventing reload over 'delete' key.
-    if(event.keyCode === 46) {
+    if (event.keyCode === 46) {
       return;
     }
     let keyword = event.target.value;
     // console.log(event.target.value);
-    if(!keyword.length) {
-      if(company === "maang") {
+    if (!keyword.length) {
+      if (company === "maang") {
         filterData(data);
       } else {
         let newData = {}
@@ -31,8 +31,8 @@ export default function Filter({filteredData, filterData, filterStatus}) {
       setHistoryData([]);
     } else {
       // Tracking backspace search history.
-      if(event.keyCode === 8) {
-        filterData(historyData.at(historyData.length-1));
+      if (event.keyCode === 8) {
+        filterData(historyData.at(historyData.length - 1));
         historyData.pop();
       } else {
         setHistoryData([...historyData, filteredData]);
@@ -40,22 +40,22 @@ export default function Filter({filteredData, filterData, filterStatus}) {
         Object.keys(filteredData).map((company) => {
           let job_title = [], job_posting = [], job_location = [], job_link = [];
           filteredData[company].job_title.filter((title, idx) => {
-                if(title.toLowerCase().includes(keyword.toLowerCase())) {
-                  job_title.push(filteredData[company].job_title[idx]);
-                  job_location.push(filteredData[company].job_location[idx]);
-                  if(filteredData[company].job_posting) {
-                    job_posting.push(filteredData[company].job_posting[idx]);
-                  }
-                  job_link.push(filteredData[company].job_link[idx]);
-                }
+            if (title.toLowerCase().includes(keyword.toLowerCase())) {
+              job_title.push(filteredData[company].job_title[idx]);
+              job_location.push(filteredData[company].job_location[idx]);
+              if (filteredData[company].job_posting) {
+                job_posting.push(filteredData[company].job_posting[idx]);
+              }
+              job_link.push(filteredData[company].job_link[idx]);
+            }
           });
           newData[company] = {
             job_title,
             job_location,
             job_link
           };
-          if(job_posting.length) {
-            newData[company] = {...newData[company], job_posting};
+          if (job_posting.length) {
+            newData[company] = { ...newData[company], job_posting };
           }
         });
         // console.log(newData);
@@ -69,7 +69,7 @@ export default function Filter({filteredData, filterData, filterStatus}) {
     filterStatus(true);
     let selectedCompany = event.target.value;
     setCompany(selectedCompany);
-    if(selectedCompany === "maang") {
+    if (selectedCompany === "maang") {
       filterData(data);
     } else {
       let newData = {}
@@ -80,15 +80,9 @@ export default function Filter({filteredData, filterData, filterStatus}) {
 
   return (
     <div className='filter-cont'>
-        <div className='search-bar-cont'>
-          <input className='search-bar' placeholder='Search by title...' onKeyDown={disableDelete} onKeyUp={filterByKeyword}></input>
-          <button type="submit" className="search-button">
-    <i className="fa fa-search"></i>
-  </button>
-        </div>
-        <div className='dropdown-cont'>
+      <div className='dropdown-cont'>
         <div className='filter'>
-        <i className="filter-icon fa  fa-list"></i>
+          <i className="filter-icon fa  fa-list"></i>
           <select className='dropdown filter-company' value={company} onChange={filterByCompany}>
             <option value="maang">MAANG</option>
             <option value="meta" className='meta-dropdown'>Meta</option>
@@ -101,12 +95,18 @@ export default function Filter({filteredData, filterData, filterStatus}) {
           </select>
         </div>
         <div className='filter'>
-        <i className="filter-icon fa fa-map-marker"></i>
+          <i className="filter-icon fa fa-map-marker"></i>
           <select className='dropdown filter-location'>
             <option value="" className=''>. . .</option>
           </select>
         </div>
-        </div>
+      </div>
+      <div className='search-bar-cont'>
+        <input className='search-bar' placeholder='Search by title...' onKeyDown={disableDelete} onKeyUp={filterByKeyword}></input>
+        <button type="submit" className="search-button">
+          <i className="fa fa-search"></i>
+        </button>
+      </div>
     </div>
   )
 }

@@ -7,10 +7,10 @@ import maang from '../images/maang.png';
 
 export default function Navbar() {
   return (
-      <AppBar position="static" style={{ background: '#3e5175' }}>
+    <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters className='navbar-cont'>
-        <img className='navbar-logo' src={maang} alt="logo"/>
+          <img className='navbar-logo' src={maang} alt="logo" />
           <Typography
             variant="h6"
             sx={{

@@ -9,34 +9,42 @@
     display: block;
     border-radius: 10px;
     padding-top: 10px;
-    background-color: transparent;
     overflow-y: scroll;
 }
+
 /* Hide Scrollbar */
 .items-cont {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
 }
-.items-cont::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+
+.items-cont::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
 }
-.item-link:link, .item-link:visited, .item-link:hover, .item-link:active { 
-    text-decoration: none; 
+
+.item-link:link,
+.item-link:visited,
+.item-link:hover,
+.item-link:active {
+    text-decoration: none;
 }
+
 /* single Div of a Job:title,posting,location,icon */
-.item{ 
+.item {
     box-sizing: border-box;
     cursor: pointer;
     z-index: 10;
     height: 80px;
     margin: 6px;
     padding: 10px;
-    /* border: 2px solid #fff; */
-    background-color: rgba(38, 38,38);
+    background: rgb(32, 33, 36);
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.item:hover{
+.item:hover {
     background-color: rgba(42, 54, 52, 1);
 }
 
@@ -44,21 +52,23 @@
 .single-item-cont {
     display: absolute;
     height: 48px;
-    /* margin: 3px; */
 }
-.single-item-cont:hover{
-    /* background-color: rgba(38, 38,38); */
-    /* box-shadow: 4px; */
+
+.single-item-cont:hover {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     border-radius: 4px;
 }
+
 /* job information  */
-.item-title, .item-posting, .item-location {
+.item-title,
+.item-posting,
+.item-location {
     font-family: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     display: inline-block;
     color: #fff;
 }
+
 .item-posting {
     float: right;
     padding: 2px 4px;
@@ -79,26 +89,28 @@
     padding: 0.2rem;
     border-radius: 0.5rem;
 }
+
 .item-title {
-    position:relative;
-    top:-6px;
+    position: relative;
+    top: -6px;
     font-size: 1.1rem;
     font-weight: bold;
     z-index: 1;
     text-align: left;
-    margin-top:-8px;
+    margin-top: -8px;
     margin-left: 0.5rem;
     width: 30rem;
 }
 
 /* Job icon */
-.item-title>img{
+.item-title>img {
     position: relative;
-    top:6px;
+    top: 6px;
 }
+
 .item-location {
     position: relative;
-    top:-2px;
+    top: -2px;
     font-size: 0.8rem;
     line-height: 0.8;
     text-align: left;
@@ -106,10 +118,11 @@
     padding: 0 0 2px 30px;
     font-style: italic;
 }
+
 /* loader that appear after scrapping data */
-.loader{
+.loader {
     display: block;
     height: 100%;
-    width:100%;
+    width: 100%;
     margin-top: -12px;
 }
