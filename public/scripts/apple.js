@@ -13,7 +13,7 @@ async function scrapVacancies(url) {
         // Extracting job titles.
         job_title = [...job_title, ...(await page.$$eval(".table--advanced-search__title", 
             element => element.map(
-                title => title.textContent
+                title => title.textContent.trim()
             )
         ))];
         // console.log(job_title);
@@ -21,7 +21,7 @@ async function scrapVacancies(url) {
         // Extracting Job_id.
         job_location = [...job_location, ...(await page.$$eval(".table-col-2>span:last-of-type", 
             element => element.map(
-                title => title.textContent
+                location => location.textContent.trim()
             )
         ))];
         // console.log(job_location);
@@ -29,7 +29,7 @@ async function scrapVacancies(url) {
         // Extracting Job posting date.
         job_posting = [...job_posting, ...(await page.$$eval(".table--advanced-search__date", 
             element => element.map(
-                title => title.textContent
+                posting => posting.textContent.trim()
             )
         ))];
         // console.log(job_posting);
@@ -37,7 +37,7 @@ async function scrapVacancies(url) {
         // Extracting job link.
         job_link = [...job_link, ...(await page.$$eval(".table--advanced-search__title", 
             element => element.map(
-                title => "https://jobs.apple.com" + title.getAttribute("href")
+                link => "https://jobs.apple.com" + link.getAttribute("href")
             )
         ))];
         // console.log(job_link);

@@ -14,7 +14,7 @@ async function scrapVacancies(url) {
         await page.waitForSelector('.job-tile__header .job-tile__title');
         let titles = await page.$$('.job-tile__header .job-tile__title');
         for(let i = (sizeFactor * nextCount); i < titles.length; i++) {
-            job_title = [...job_title, await titles[i].evaluate((title) => title.textContent)];
+            job_title = [...job_title, await titles[i].evaluate((title) => title.textContent.trim())];
         }
         // console.log(job_title);
     
@@ -22,7 +22,7 @@ async function scrapVacancies(url) {
         await page.waitForSelector('.job-tile__subheader span[data-bind="html: primaryLocation"]');
         let locations = await page.$$('.job-tile__subheader span[data-bind="html: primaryLocation"]');
         for(let i = (sizeFactor * nextCount); i < locations.length; i++) {
-            job_location = [...job_location, await locations[i].evaluate((location) => location.textContent)];
+            job_location = [...job_location, await locations[i].evaluate((location) => location.textContent.trim())];
         }
         // console.log(job_location);
     

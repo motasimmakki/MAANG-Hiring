@@ -15,7 +15,7 @@ async function scrapVacancies(url) {
         await page.waitForSelector('.e1rpdjew0');
         job_title = [...job_title, ...(await page.$$eval(".e1rpdjew0", 
             element => element.map(
-                    title => title.textContent
+                    title => title.textContent.trim()
                 )
         ))];
         // console.log(job_title);
@@ -24,7 +24,7 @@ async function scrapVacancies(url) {
         await page.waitForSelector('.e13jx43x2:not(div)');
         job_location = [...job_location, ...(await page.$$eval(".e13jx43x2:not(div)", 
             element => element.map(
-                title => title.textContent
+                location => location.textContent.trim()
             )
         ))];
         // console.log(job_location);
@@ -33,7 +33,7 @@ async function scrapVacancies(url) {
         await page.waitForSelector('.e1rpdjew3>.essqqm81');
         job_link = [...job_link, ...(await page.$$eval(".e1rpdjew3>.essqqm81", 
             element => element.map(
-                title => "https://www.jobs.netflix.com" + title.getAttribute("href")
+                link => "https://www.jobs.netflix.com" + link.getAttribute("href")
             )
         ))];
         // console.log(job_link);

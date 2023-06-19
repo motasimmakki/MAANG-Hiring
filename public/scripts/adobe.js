@@ -14,7 +14,7 @@ async function scrapVacancies(url) {
         await page.waitForSelector('.job-title span');
         job_title = [...job_title, ...(await page.$$eval(".job-title span", 
             element => element.map(
-                title => title.textContent
+                title => title.textContent.trim()
             )
         ))];
         // console.log(job_title);
