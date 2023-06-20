@@ -2,8 +2,11 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 async function scrapVacancies(url) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(
+        // { headless: false, defaultViewPort: null }
+    );
     const page = await browser.newPage();
+    await page.setDefaultNavigationTimeout(0);
     await page.goto(url);
 
     let job_title = [], job_location = [], job_link = [];
@@ -17,7 +20,7 @@ async function scrapVacancies(url) {
                     title => title.textContent.trim()
                 )
         ))];
-        console.log(job_title);
+        // console.log(job_title);
     
         // Extracting job locations.
         await page.waitForSelector('.xcicffo+.x7z1be2');
@@ -26,14 +29,18 @@ async function scrapVacancies(url) {
                 location => location.textContent.trim()
             )
         ))];
-        console.log(job_location);
+        // console.log(job_location);
     
         // Extracting job link.
-        // job_link = [...job_link, ...(await page.$$eval("._af0h>._8sef", 
-        //     element => element.map(
-        //         link => "https://www.metacareers.com" + link.getAttribute("href")
-        //     )
-        // ))];
+        await page.waitForSelector('.x1ypdohk[role="link"]');
+        let cards = await page.$$('.x1ypdohk[role="link"]');
+        for(let card of cards) {
+            await card.click();
+            await page.waitForNetworkIdle();
+            let tabs = await browser.pages();
+            let total_tabs = tabs.length;
+            job_link = [ ...job_link, (await tabs[total_tabs - 1].url())];
+        }
         // console.log(job_link);
         
     //     if(await page.$("._8se3>a")) {
@@ -62,7 +69,12 @@ async function scrapVacancies(url) {
     }
 }
 
-scrapVacancies('https://www.metacareers.com/jobs');
+async function print() {
+    let meta = await scrapVacancies('https://www.metacareers.com/jobs');
+    console.log(meta);
+}
+print();
+
 // scrapVacancies('https://www.metacareers.com/jobs').then((data) => {
 //     const fileData = fs.readFileSync('./src/data.json');
 //     // console.log(fileData.length);
