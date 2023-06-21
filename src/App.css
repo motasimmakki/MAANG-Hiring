@@ -3,9 +3,22 @@
     box-sizing: border-box;
     user-select: none;
 }
+
 .App {
-    background-color: rgb(32, 33, 36);
+    background-color: black;
     display: flex;
     flex-direction: column;
     padding: 0.2rem;
+}
+
+.header {
+    background: url(/src/images/Background3.png);
+    background-position: center;
+    background-size: 640px;
+}
+
+.navbar-logo,
+h6 {
+    backdrop-filter: blur(10px);
+    filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.4));
 }

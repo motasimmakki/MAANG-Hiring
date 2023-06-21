@@ -2,15 +2,19 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 .navbar-cont {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    
+    background: transparent;
+
 }
+
 .navbar-cont * {
     margin-right: 1rem;
 }
+
 .navbar-logo {
     max-width: 9rem;
 }
