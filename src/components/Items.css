@@ -2,7 +2,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-
 /* Main container that will hold the Div of Jobs */
 .items-cont {
     width: 99%;
@@ -34,7 +33,6 @@
     background-color: rgba(38, 38,38);
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-
 .item:hover{
     background-color: rgba(42, 54, 52, 1);
 }
@@ -65,7 +63,6 @@
     line-height: 0.8;
     overflow: hidden;
 }
-
 /* .item-title-cont {} */
 .company-icon {
     margin-right: 0.4rem;
@@ -87,7 +84,6 @@
     margin-left: 0.5rem;
     width: 30rem;
 }
-
 /* company icon */
 .item-title>img{
     position: relative;
@@ -113,7 +109,6 @@
     width:100%;
     margin-top: 20px;
 }
-
 /* ----------------------------add to favorites button --------------------*/
 .add-to-favorites {
     width: 35px;
@@ -126,21 +121,34 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
+    outline: none !important;
+    box-shadow: none !important;
+} 
 .add-to-favorites svg {
     transition: fill 0.3s; /* Add transition for smooth hover effect */
-  }
-  
-  .add-to-favorites:hover svg {
-    fill: red; /* Change fill color on hover */
-  }
-  
-  .add-to-favorites:focus {
-    outline: none;
+} 
+.add-to-favorites svg:hover {
+    fill: green; /* Change fill color on hover */
+}
+.add-to-favorites:focus {
+    outline: none !important;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  }
-
+}
+.scale-click {
+    animation-name: scale-click;
+    animation-duration: 1s;
+}
+@keyframes scale-click {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
 /* ----------------------------------- light mode CSS written below this  */
 /* for every text and background */
 .light{
@@ -156,7 +164,7 @@ h3.light{
 div.single-item-cont.light{
     background: transparent;
 } 
- div.item.light:hover{
+div.item.light:hover{
     background-color: rgba(255, 127, 80, 0.626);
 }
 .add-to-favorites.light{
