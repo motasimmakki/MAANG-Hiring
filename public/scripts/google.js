@@ -22,11 +22,11 @@ async function scrapVacancies(url) {
         await page.waitForSelector('.gc-job-tags');
         job_location = [...job_location, ...(await page.$$eval('.gc-job-tags', 
             element => element.map(
-                title => title.textContent.trim()
+                location => location.textContent.trim()
             )
         ))];
         job_location = job_location.map(
-            s => s.split('\n').filter(s => s).join(' ').split(' ').filter(s => s).join(' ')
+            location => location.split('\n').filter(s => s).join(' ').split(' ').filter(s => s).join(' ')
         );
         // console.log(job_location);
     

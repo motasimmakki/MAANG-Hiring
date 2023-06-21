@@ -13,7 +13,7 @@ async function scrapVacancies(url) {
         // Extracting job titles.
         job_title = [...job_title, ...(await page.$$eval(".job-title", 
             element => element.map(
-                title => title.textContent
+                title => title.textContent.trim()
             )
         ))];
         // console.log(job_title);
@@ -21,7 +21,7 @@ async function scrapVacancies(url) {
         // Extracting Job_id.
         job_location = [...job_location, ...(await page.$$eval(".location-and-id", 
             element => element.map(
-                title => title.textContent
+                location => location.textContent.trim()
             )
         ))];
         // console.log(job_location);
@@ -29,7 +29,7 @@ async function scrapVacancies(url) {
         // Extracting Job posting date.
         job_posting = [...job_posting, ...(await page.$$eval(".posting-date", 
             element => element.map(
-                title => title.textContent
+                posting => posting.textContent.trim()
             )
         ))];
         // console.log(job_posting);
@@ -37,7 +37,7 @@ async function scrapVacancies(url) {
         // Extracting job link.
         job_link = [...job_link, ...(await page.$$eval(".job-link", 
             element => element.map(
-                title => "https://www.amazon.jobs" + title.getAttribute("href")
+                link => "https://www.amazon.jobs" + link.getAttribute("href")
             )
         ))];
         // console.log(job_link);
