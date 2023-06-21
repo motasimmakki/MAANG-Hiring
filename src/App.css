@@ -3,22 +3,82 @@
     box-sizing: border-box;
     user-select: none;
 }
-
 .App {
-    background-color: black;
+    background-color: rgb(32, 33, 36);
     display: flex;
     flex-direction: column;
     padding: 0.2rem;
 }
 
-.header {
-    background: url(/src/images/Background3.png);
-    background-position: center;
-    background-size: 640px;
-}
 
-.navbar-logo,
-h6 {
-    backdrop-filter: blur(10px);
-    filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.4));
-}
+
+/* ------------------------Toggle switch and CSS ----------------------------------------------- */
+.container {
+    display: inline-block;
+  }
+  
+  .toggle-input {
+    display: none;
+  }
+  
+  /* ------------------- fixed at top right with background none  */
+  .toggle-label {
+    position: fixed;
+    top: 10px;
+    left: 420px;
+    z-index: 10;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  
+  /* --------------------- slider circle------------------ */
+  .toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  
+  /* -------------------- shifts the slider left and right--------------- */
+  .toggle-input:checked + .toggle-label .toggle-slider {
+    transform: translateX(30px);
+    /* background-color: blue; */
+  }
+  /* --------------------- change  background color of slider------------ */
+  .toggle-input:checked + .toggle-label{
+    background-color: rgb(50, 144, 245);
+  }
+  
+  .label-text-left,
+  .label-text-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* color: #fff; */
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    pointer-events: none;
+  }
+  
+  .label-text-left {
+    font-size: 0.6rem;
+    left: 4px;
+    color: black;
+  }
+  
+  .label-text-right {
+    right: 4px;
+    font-size: 0.6rem;
+    z-index: -1;
+    color: black;
+  }
+  

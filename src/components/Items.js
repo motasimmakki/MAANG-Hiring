@@ -36,19 +36,19 @@ export default function Items({ data }) {
     }, [data]);
     return (
         (isLoading) ? null :
-            <div className='items-cont'>
+            <div className='items-cont light'>
                 {
                     Object.keys(data).map((company, idx) => (
                         data[company].job_link.map((link, idx) => (
-                            <div className='item' key={idx}>
+                            <div className='item light' key={idx}>
                                 <a className='item-link' href={link} target='_blank' rel='noreferrer' key={idx}>
-                                    <div className='single-item-cont'>
+                                    <div className='single-item-cont light '>
                                         {
                                             (data[company].job_posting) ?
-                                                <h3 className='item-posting'>{data[company].job_posting.at(idx)}</h3>
-                                                : <h3 className='item-posting'><strong>_ _ _</strong></h3>
+                                                <h3 className='item-posting light'>{data[company].job_posting.at(idx)}</h3>
+                                                : <h3 className='item-posting light'><strong>_ _ _</strong></h3>
                                         }
-                                        <h3 className='item-title'>
+                                        <h3 className='item-title light'>
                                             <img src={logoPaths[company]} className='company-icon' alt={company + '-logo'}></img>
                                             {
                                                 ((data[company].job_title.at(idx).length) > 45) ?
@@ -56,9 +56,17 @@ export default function Items({ data }) {
                                                     : data[company].job_title.at(idx)
                                             }
                                         </h3>
-                                        <h3 className='item-location'>{data[company].job_location.at(idx)}</h3>
+                                        <h3 className='item-location light '>{data[company].job_location.at(idx)}</h3>
                                     </div>
+                                    
                                 </a>
+{/*-------------------------------  ADD to Favorite Button and SVG------------------------------------------------  */}
+                                <button class="add-to-favorites light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                            <path d="M5 3h14a2 2 0 0 1 2 2v16l-8-4-8 4V5a2 2 0 0 1 2-2z"></path>
+                                        </svg>
+
+                                    </button>
                             </div>
                         ))
                     ))
