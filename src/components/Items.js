@@ -53,8 +53,8 @@ export default function Items({ data, themeMode }) {
                                         <h3 className='item-title light' id="item-title">
                                             <img src={logoPaths[company]} className='company-icon' alt={company + '-logo'}></img>
                                             {
-                                            ((data[company].job_title.at(idx).length) > 45) ?
-                                                data[company].job_title.at(idx).substring(0, data[company].job_title.at(idx).substring(0, 45).lastIndexOf(' ')) + "..."
+                                            ((data[company].job_title.at(idx).length) > 40) ?
+                                                data[company].job_title.at(idx).substring(0, data[company].job_title.at(idx).substring(0, 40).lastIndexOf(' ')) + "..."
                                                 : data[company].job_title.at(idx)
                                             }
                                         </h3>
@@ -88,8 +88,8 @@ export default function Items({ data, themeMode }) {
                                         <h3 className='item-title'>
                                             <img src={logoPaths[company]} className='company-icon' alt={company + '-logo'}></img>
                                             {
-                                            ((data[company].job_title.at(idx).length) > 45) ?
-                                                data[company].job_title.at(idx).substring(0, data[company].job_title.at(idx).substring(0, 45).lastIndexOf(' ')) + "..."
+                                            ((data[company].job_title.at(idx).length) > 40) ?
+                                                data[company].job_title.at(idx).substring(0, data[company].job_title.at(idx).substring(0, 40).lastIndexOf(' ')) + "..."
                                                 : data[company].job_title.at(idx)
                                             }
                                         </h3>
