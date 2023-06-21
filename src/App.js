@@ -20,10 +20,17 @@ function App() {
   }
   return (
     <div className="App">
-      <div className='header'>
-        <Navbar />
-        <Filter filteredData={viewableData} filterData={updateData} filterStatus={updateFilterStatus} />
+      <div class="container">
+        <input type="checkbox" id="toggle" class="toggle-input"></input>
+        <label for="toggle" class="toggle-label">
+          <span class="label-text-left">Dark</span>
+          <span class="toggle-slider"></span>
+          <span class="label-text-right">Light</span>
+        </label>
       </div>
+
+      <Navbar />
+      <Filter filteredData={viewableData} filterData={updateData} filterStatus={updateFilterStatus} />
       <List data={viewableData} filterStatus={isFiltered} />
       <Footer />
     </div>

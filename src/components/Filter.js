@@ -80,6 +80,12 @@ export default function Filter({ filteredData, filterData, filterStatus }) {
 
   return (
     <div className='filter-cont'>
+      <div className='search-bar-cont'>
+        <input className='search-bar' placeholder='Search by title...' onKeyDown={disableDelete} onKeyUp={filterByKeyword}></input>
+        <button type="submit" className="search-button">
+          <i className="fa fa-search"></i>
+        </button>
+      </div>
       <div className='dropdown-cont'>
         <div className='filter'>
           <i className="filter-icon fa  fa-list"></i>
@@ -100,12 +106,6 @@ export default function Filter({ filteredData, filterData, filterStatus }) {
             <option value="" className=''>. . .</option>
           </select>
         </div>
-      </div>
-      <div className='search-bar-cont'>
-        <input className='search-bar' placeholder='Search by title...' onKeyDown={disableDelete} onKeyUp={filterByKeyword}></input>
-        <button type="submit" className="search-button">
-          <i className="fa fa-search"></i>
-        </button>
       </div>
     </div>
   )

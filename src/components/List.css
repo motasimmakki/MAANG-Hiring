@@ -2,25 +2,19 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 .list-cont {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  height: 22rem;
-  background-color: black;
+  height: 23rem;
+  background-color: rgb(32, 33, 36);
   overflow-y: scroll;
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scrollbar-width: none;
-  /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
 }
-
-.list-cont::-webkit-scrollbar {
-  display: none;
-  /* Safari and Chrome */
+.list-cont::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }
-
 .loader:empty {
   width: 5em;
   height: 5em;
@@ -30,11 +24,57 @@
   animation: load8 1s infinite linear;
 }
 
+/* --------------------------------------- Switch tabs CSS written below------------------------- */
+/*  contain CSS for positioning of  both tabs button */
+.tabs{
+  display: flex;
+  flex-direction: row;
+  margin-top: -10px;
+  position: fixed;
+  height: 30px;
+  top:150px;
+  left: 4px;
+  background-color: #3E5175;
+  z-index: 10;
+}
+.btn{
+  width: 252px;  
+  padding: 2px;
+  font-size: 1.1rem;
+  background-color: #202124;
+  color: white;
+  margin: 0;
+  border: 1px solid rgb(32, 33, 36);
+  border-bottom: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.btn.deActive-tab{
+  background-color: rgb(43, 43, 43);
+  color: gray;
+  opacity: 0.8;
+  border-bottom:2px solid rgb(32, 33, 36) ;
+  /* border-bottom-left-radius: 3px; */
+}
+.btn:hover{
+  background-color: rgb(38, 38, 38);
+  color: white;
+}
+.deActive-tab{
+  /* display: none; */
+  background-color: rgb(32, 33, 36);
+}
+.deActive-tab:hover{
+  opacity: 1;
+}
+.tab-view{
+  display: flex;
+  flex-direction: row;
+}
 @keyframes load8 {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
