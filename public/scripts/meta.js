@@ -1,7 +1,54 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-async function scrapVacancies(url) {
+let job_title = [], job_location = [], job_link = [];
+let nextCount = 0, sizeFactor = 20;
+
+let getTitles = async (page) => {
+    await page.waitForSelector('.x1e096f4');
+    let titles = await page.$$('.x1e096f4');
+    // console.log("Title len: "+ titles.length);
+    for(let i = (sizeFactor * nextCount); i < titles.length; i++) {
+        job_title = [...job_title, await titles[i].evaluate((title) => title.textContent.trim())];
+    }
+}
+
+let getLocations = async (page) => {
+    await page.waitForSelector('.xcicffo+.x7z1be2');
+    let locations = await page.$$('.xcicffo+.x7z1be2');
+    for(let i = (sizeFactor * nextCount); i < locations.length; i++) {
+        job_location = [...job_location, await locations[i].evaluate((location) => location.textContent.trim())];
+    }
+}
+
+let getLinks = async (browser, page) => {
+    await page.waitForSelector('.x1ypdohk[role="link"]');
+    let cards = await page.$$('.x1ypdohk[role="link"]');
+    for(let i = (sizeFactor * nextCount); i < cards.length; i++) {
+        await cards[i].click();
+        // await page.waitForNetworkIdle();
+        let tabs = await browser.pages();
+        let total_tabs = tabs.length;
+        let newTab = tabs[total_tabs - 1];
+        newTab.setJavaScriptEnabled(false);
+        job_link = [ ...job_link, (await newTab.url())];
+    }
+}
+
+let loadMore = async (page) => {
+    await page.waitForSelector('.xpyat2d div.x3nfvp2[role="none"]');
+    if(await page.$('.xpyat2d div.x3nfvp2[role="none"]')) {
+        await page.click('.xpyat2d div.x3nfvp2[role="none"]');
+        await page.waitForNetworkIdle();
+        nextCount += 1;
+        if(nextCount === 2) return false;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+let scrapVacancies = async (url) => {
     const browser = await puppeteer.launch(
         // { headless: false, defaultViewPort: null }
     );
@@ -9,56 +56,14 @@ async function scrapVacancies(url) {
     await page.setDefaultNavigationTimeout(0);
     await page.goto(url);
 
-    let job_title = [], job_location = [], job_link = [];
-
-    // do {
-        // Extracting job titles.
-        // Extracting using very first class.
-        await page.waitForSelector('.x1e096f4');
-        job_title = [...job_title, ...(await page.$$eval(".x1e096f4", 
-            element => element.map(
-                    title => title.textContent.trim()
-                )
-        ))];
-        // console.log(job_title);
-    
-        // Extracting job locations.
-        await page.waitForSelector('.xcicffo+.x7z1be2');
-        job_location = [...job_location, ...(await page.$$eval(".xcicffo+.x7z1be2", 
-            element => element.map(
-                location => location.textContent.trim()
-            )
-        ))];
-        // console.log(job_location);
-    
-        // Extracting job link.
-        await page.waitForSelector('.x1ypdohk[role="link"]');
-        let cards = await page.$$('.x1ypdohk[role="link"]');
-        for(let card of cards) {
-            await card.click();
-            await page.waitForNetworkIdle();
-            let tabs = await browser.pages();
-            let total_tabs = tabs.length;
-            job_link = [ ...job_link, (await tabs[total_tabs - 1].url())];
-        }
-        // console.log(job_link);
-        
-    //     if(await page.$("._8se3>a")) {
-    //         let pagination = await page.$$eval("._8se3>a", 
-    //             element => element.map(
-    //                 title => title.textContent
-    //             )
-    //         )
-    //         if(pagination.at(pagination.length-1) === "Next") {
-    //             await page.click("._8se3>a");
-    //             await page.goto(page.url());
-    //         } else {
-    //             break;
-    //         }
-    //     } else {
-    //         break;
-    //     }
-    // } while(true);
+    do {
+        await Promise.allSettled([getTitles(page), getLocations(page), getLinks(browser, page)]);
+        try {
+            if(!await loadMore(page)) break;
+        } catch(error) {
+            break;
+        }       
+    } while(true);
 
     browser.close();
 
