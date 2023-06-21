@@ -143,7 +143,7 @@
 
 /* ----------------------------------- light mode CSS written below this  */
 /* for every text and background */
-/* .light{
+.light{
     color:black;
     background-color: white;
 }
@@ -169,15 +169,14 @@ div.single-item-cont.light{
 .btn.light{
     background-color: white;
     color:black;
-  }
-  .btn.light.deActive-tab{
+}
+.btn.light.deActive-tab{
     color: black;
     background-color: rgb(141, 120, 120);
     border-bottom: none;
-  }
-  
-  .btn.light:hover{
+}
+.btn.light:hover{
     background-color: rgb(141, 120, 120);
     color: white;
-  }
-  */
+}
+ 
