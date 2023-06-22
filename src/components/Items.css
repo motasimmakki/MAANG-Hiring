@@ -116,6 +116,7 @@
     position: relative;
     left: 90%;
     top:-30%;
+    z-index: 2;
     background-color: transparent;
     color: white;
     border: none;
@@ -134,6 +135,30 @@
     outline: none !important;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
+/* --------------------------- Delete Button CSS --------------------------- */
+.delete-button {
+    background-color: transparent;
+    position: relative;
+    top:-20%;
+    z-index: 3;
+    left:90%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .delete-icon {
+    width: 25px;
+    height: 25px;
+    fill: red; 
+  }
+  
+  .delete-button:hover .delete-icon,
+  .delete-button:focus .delete-icon {
+    fill: darkred; 
+ 
+  }
+  
 .scale-click {
     animation-name: scale-click;
     animation-duration: 1s;
