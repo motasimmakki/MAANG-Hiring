@@ -1,6 +1,7 @@
+import InterestedItems from './InterestedItems';
 import Items from './Items'
 import './Items.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function List({ data, filterStatus, themeMode }) {
   // For change Theme.  
@@ -21,16 +22,37 @@ export default function List({ data, filterStatus, themeMode }) {
       fav_btn_classes.remove('light');
     }
   }, [themeMode]);
+  const [currTab, changeCurrTab] = useState("all-jobs");
+  function changeTab(currTab) {
+    // console.log(currTab)
+    if(currTab.classList.contains('btn-all')) {
+      changeCurrTab("all-jobs")
+    } else {
+      changeCurrTab("interested-jobs")
+    }
+  }
+  // useEffect(() => {
+  //   console.log(currTab);
+  // }, [currTab]);
+  const interestList = JSON.parse(localStorage.getItem("interestedJobs"));
   return (
     <div className='list-cont light'id="list-cont">
       {/* ----------------------------------tab buttons added below------------- */}
       <div className='tabs light' id="tabs">
-        <button className='btn btn-all light' id="all-btn">All Jobs</button>
-        <button className='btn btn-favorite deActive-tab light' id="fav-btn">Interested</button>
+        <button className='btn btn-all light' id="all-btn" onClick={(event) => changeTab(event.currentTarget)}>All Jobs</button>
+        <button className='btn btn-favorite deActive-tab light' id="fav-btn" onClick={(event) => changeTab(event.currentTarget)}>Interested</button>
       </div>
       <div className='tab-view'>
         <div className='loader'>
-          <Items data={data} filterStatus={filterStatus} themeMode={themeMode} />
+          {
+          (currTab === "all-jobs")? 
+            <Items data={data} filterStatus={filterStatus} themeMode={themeMode}/>
+          :
+            (interestList && !Object.keys(interestList).length)?
+              <p>No Job Marked as Interested</p>
+            : 
+              <InterestedItems/>
+          }
         </div>
         {/* -------------------------- Favorites active tab ------------------  */}
         <div className='favorite deActive-tab'></div>

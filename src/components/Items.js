@@ -40,11 +40,14 @@ export default function Items({ data, themeMode }) {
         item.classList.add("scale-click");
         // console.log(company + " - " + idx);
         let key = company + "-" + idx;
-        if(!(key in interestList)) {
+        if(!interestList || !(key in interestList)) {
             let postObj = {
                 job_title: data[company].job_title[idx],
                 job_location: data[company].job_location[idx],
                 job_link: data[company].job_link[idx]
+            }
+            if(data[company].job_posting) {
+                postObj.job_posting = data[company].job_posting[idx];
             }
             let newInterestedList = {};
             for(let key in interestList) {
@@ -88,7 +91,7 @@ export default function Items({ data, themeMode }) {
                                 </a>
     {/*-------------------------------  ADD to Favorite Button and SVG------------------------------------------------  */}
                                 {
-                                (interestList.hasOwnProperty(company + "-" + idx))?
+                                (interestList?.hasOwnProperty(company + "-" + idx))?
                                     (<button class="add-to-favorites light">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="green" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                                             <path d="M5 3h14a2 2 0 0 1 2 2v16l-8-4-8 4V5a2 2 0 0 1 2-2z"></path>
