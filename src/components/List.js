@@ -51,7 +51,7 @@ export default function List({ data, themeMode }) {
     <div className='list-cont light'id="list-cont">
       {/* ----------------------------------tab buttons added below------------- */}
       <div className='tabs light' id="tabs">
-        <button className='btn btn-all light active-tab' id="all-btn" onClick={(event) => changeTab(event.currentTarget)}>All Jobs</button>
+        <button className='btn btn-all light active-tab' id="all-btn" onClick={(event) => changeTab(event.currentTarget)}>Available</button>
         <button className='btn btn-favorite deActive-tab light' id="fav-btn" onClick={(event) => changeTab(event.currentTarget)}>Interested</button>
       </div>
       <div className='tab-view'>

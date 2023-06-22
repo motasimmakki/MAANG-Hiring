@@ -68,8 +68,8 @@ export default function Items({ data, themeMode }) {
             (themeMode === "light")?
                 (<div className='items-cont light'>
                     {
-                    Object.keys(data).map((company, idx) => (
-                        data[company].job_link.map((link, idx) => (
+                    Object.keys(data)?.map((company, idx) => (
+                        data[company]?.job_link.map((link, idx) => (
                             <div className='item light' key={idx}>
                                 <a className='item-link' href={link} target='_blank' rel='noreferrer' key={idx}>
                                     <div className='single-item-cont light'>
@@ -118,8 +118,8 @@ export default function Items({ data, themeMode }) {
             :
                 (<div className='items-cont'>
                     {
-                    Object.keys(data).map((company, idx) => (
-                        data[company].job_link.map((link, idx) => (
+                    Object.keys(data)?.map((company, idx) => (
+                        data[company]?.job_link.map((link, idx) => (
                             <div className='item' key={idx}>
                                 <a className='item-link' href={link} target='_blank' rel='noreferrer' key={idx}>
                                     <div className='single-item-cont'>

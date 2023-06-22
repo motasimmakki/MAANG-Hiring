@@ -81,6 +81,7 @@
     width: 30%;
     font-size: 1.2rem;
     color: #fff;
+    outline: none;
 }
 select {
     background: #2a2f3b;
@@ -100,7 +101,4 @@ select:hover {
 }
 option {
     color: #fff;
-}
-.meta-dropdown {
-    font-size: 1.2rem;
 }

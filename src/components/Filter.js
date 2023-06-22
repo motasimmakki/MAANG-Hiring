@@ -3,7 +3,8 @@ import data from '../../src/data.json';
 import { useState } from 'react';
 
 export default function Filter({ filteredData, filterData }) {
-  const [company, setCompany] = useState("maang");
+  const [company, setCompany] = useState("all_jobs");
+  const [location, setLocation] = useState("all_locations");
   const [historyData, setHistoryData] = useState([]);
 
   const disableDelete = (event) => {
@@ -68,13 +69,28 @@ export default function Filter({ filteredData, filterData }) {
     document.querySelector('.search-bar').value = '';
     let selectedCompany = event.target.value;
     setCompany(selectedCompany);
-    if (selectedCompany === "maang") {
+    if(selectedCompany === "all_jobs") {
       filterData(data);
     } else {
       let newData = {}
-      newData[selectedCompany] = data[selectedCompany];
+      if (selectedCompany === "maang") {
+        for(let key in data) {
+          if(key === "meta" || key === "apple" || key === "amazon" || key === "netflix" || key === "google") {
+            newData[key] = data[key];
+          }
+        }
+      } else {
+        newData[selectedCompany] = data[selectedCompany];
+      }
       filterData(newData);
     }
+  }
+
+  const filterByLocation = (event) => {
+    document.querySelector('.search-bar').value = '';
+    let selectedLocation = event.target.value;
+    console.log(selectedLocation);
+    setLocation(selectedLocation);
   }
 
   return (
@@ -89,8 +105,9 @@ export default function Filter({ filteredData, filterData }) {
         <div className='filter'>
           <i className="filter-icon fa  fa-list"></i>
           <select className='dropdown filter-company' value={company} onChange={filterByCompany}>
+            <option value="all_jobs">All Jobs</option>
             <option value="maang">MAANG</option>
-            <option value="meta" className='meta-dropdown'>Meta</option>
+            <option value="meta">Meta</option>
             <option value="apple">Apple</option>
             <option value="amazon">Amazon</option>
             <option value="netflix">Netflix</option>
@@ -101,8 +118,16 @@ export default function Filter({ filteredData, filterData }) {
         </div>
         <div className='filter'>
           <i className="filter-icon fa fa-map-marker"></i>
-          <select className='dropdown filter-location'>
-            <option value="" className=''>. . .</option>
+          <select className='dropdown filter-location' value={location} onChange={filterByLocation}>
+            {/* <option value="" className=''>. . .</option> */}
+            <option value="all_locations">All Locations</option>
+            <option value="remote">Remote</option>
+            <option value="mumbai">Mumbai</option>
+            <option value="bangalore">Bangalore</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="chennai">Chennai</option>
+            <option value="pune">Pune</option>
+            <option value="outside_india">Outside India</option>
           </select>
         </div>
       </div>
