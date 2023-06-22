@@ -63,7 +63,7 @@ export default function List({ data, filterStatus, themeMode }) {
             (interestList && !Object.keys(interestList).length)?
               <p>No Job Marked as Interested</p>
             : 
-              <InterestedItems/>
+              <InterestedItems themeMode={themeMode}/>
           }
         </div>
         {/* -------------------------- Favorites active tab ------------------  */}
