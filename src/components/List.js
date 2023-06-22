@@ -4,6 +4,7 @@ import './Items.css';
 import { useEffect, useState } from 'react';
 
 export default function List({ data, themeMode }) {
+  // console.log(data);
   // For change Theme.  
   useEffect(() => {
     const listCont_classes = document.getElementById('list-cont').classList;
@@ -58,10 +59,13 @@ export default function List({ data, themeMode }) {
         <div className='loader'>
           {
           (currTab === "all-jobs")? 
-            <Items data={data} themeMode={themeMode}/>
+            (data && !Object.keys(data).length)?
+              <p classList="empty-msg">No Job Found As Per Selected Filter</p>
+            :
+              <Items data={data} themeMode={themeMode}/>
           :
             (interestList && !Object.keys(interestList).length)?
-              <p>No Job Marked as Interested</p>
+              <p classList="empty-msg">No Job Marked As Interested</p>
             : 
               <InterestedItems themeMode={themeMode}/>
           }

@@ -76,11 +76,15 @@ export default function Filter({ filteredData, filterData }) {
       if (selectedCompany === "maang") {
         for(let key in data) {
           if(key === "meta" || key === "apple" || key === "amazon" || key === "netflix" || key === "google") {
-            newData[key] = data[key];
+            if(data[key]) {
+              newData[key] = data[key];
+            }
           }
         }
       } else {
-        newData[selectedCompany] = data[selectedCompany];
+        if(data[selectedCompany]) {
+          newData[selectedCompany] = data[selectedCompany];
+        }
       }
       filterData(newData);
     }
