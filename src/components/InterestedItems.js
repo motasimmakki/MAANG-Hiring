@@ -19,11 +19,23 @@ export default function InterestedItems() {
         oracle: oracleLogo
     }
     const [interestList, updateInterestedList] = useState(JSON.parse(localStorage.getItem("interestedJobs")));
+    function removeJob(companyKey, idx) {
+        console.log(companyKey);
+        let newInterestedList = {};
+        for(let key in interestList) {
+            if(key !== (companyKey))
+            newInterestedList[key] = interestList[key];
+        }
+        updateInterestedList(newInterestedList);
+    }
+    useEffect(() => {
+        localStorage.setItem("interestedJobs", JSON.stringify(interestList));
+    }, [interestList])
     return (
         <div className='items-cont light'>
             {   interestList &&
                 Object.keys(interestList).map((company, idx) => (
-                    <div className='item light'>
+                    <div className='item light' key={idx}>
                         <a className='item-link' href={interestList[company].job_link} target='_blank' rel='noreferrer'>
                             <div className='single-item-cont light'>
                                 {
@@ -43,7 +55,7 @@ export default function InterestedItems() {
                             </div>
                         </a>
                         <button class="delete-button">
-                            <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" onClick={() => removeJob(company, idx)}>
                                 <path d="M0 0h24v24H0z" fill="none" />
                                 <path d="M6 18a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v11zM19 3h-3L16 2H8L7 3H4v2h15V3z" />
                             </svg>
