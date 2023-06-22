@@ -89,7 +89,7 @@ export default function Items({ data, themeMode }) {
                                         <h3 className='item-location light'>{data[company].job_location.at(idx)}</h3>
                                     </div>
                                 </a>
-    {/*-------------------------------  ADD to Favorite Button and SVG------------------------------------------------  */}
+    {/*-------------------------------  ADD to Favorite Button and SVG--------------------------------------------  */}
                                 {
                                 (interestList?.hasOwnProperty(company + "-" + idx))?
                                     (<button class="add-to-favorites light">
@@ -133,7 +133,7 @@ export default function Items({ data, themeMode }) {
                                         <h3 className='item-location'>{data[company].job_location.at(idx)}</h3>
                                     </div>
                                 </a>
-        {/* -------------------------------  ADD to Favorite Button and SVG------------------------------------------------  */}
+        {/* -------------------------------  ADD to Favorite Button and SVG--------------------------------------  */}
                                 {
                                 (interestList.hasOwnProperty(company + "-" + idx))?
                                     (<button class="add-to-favorites">
