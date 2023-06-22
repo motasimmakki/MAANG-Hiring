@@ -76,7 +76,7 @@ export default function Items({ data, themeMode }) {
                                         {
                                         (data[company].job_posting) ?
                                             <h3 className='item-posting light'>{data[company].job_posting.at(idx)}</h3>
-                                            : <h3 className='item-posting light'><strong>_ _ _</strong></h3>
+                                            : <h3 className='item-posting empty-posting light'><strong>_ _ _</strong></h3>
                                         }
                                         <h3 className='item-title light'>
                                             <img src={logoPaths[company]} className='company-icon' alt={company + '-logo'}></img>
@@ -86,7 +86,13 @@ export default function Items({ data, themeMode }) {
                                                 : data[company].job_title.at(idx)
                                             }
                                         </h3>
-                                        <h3 className='item-location light'>{data[company].job_location.at(idx)}</h3>
+                                        <h3 className='item-location light'>
+                                            {
+                                            (data[company].job_location.at(idx).length > 40)?
+                                                data[company].job_location.at(idx).substring(0, data[company].job_location.at(idx).substring(0, 40).lastIndexOf(' ')) + "..."
+                                                : data[company].job_location.at(idx)
+                                            }
+                                        </h3>
                                     </div>
                                 </a>
     {/*-------------------------------  ADD to Favorite Button and SVG--------------------------------------------  */}
@@ -120,7 +126,7 @@ export default function Items({ data, themeMode }) {
                                         {
                                         (data[company].job_posting) ?
                                             <h3 className='item-posting'>{data[company].job_posting.at(idx)}</h3>
-                                            : <h3 className='item-posting'><strong>_ _ _</strong></h3>
+                                            : <h3 className='item-posting empty-posting'><strong>_ _ _</strong></h3>
                                         }
                                         <h3 className='item-title'>
                                             <img src={logoPaths[company]} className='company-icon' alt={company + '-logo'}></img>
@@ -130,7 +136,13 @@ export default function Items({ data, themeMode }) {
                                                 : data[company].job_title.at(idx)
                                             }
                                         </h3>
-                                        <h3 className='item-location'>{data[company].job_location.at(idx)}</h3>
+                                        <h3 className='item-location'>
+                                            {
+                                            (data[company].job_location.at(idx).length > 40)?
+                                                data[company].job_location.at(idx).substring(0, data[company].job_location.at(idx).substring(0, 40).lastIndexOf(' ')) + "..."
+                                                : data[company].job_location.at(idx)
+                                            }
+                                        </h3>
                                     </div>
                                 </a>
         {/* -------------------------------  ADD to Favorite Button and SVG--------------------------------------  */}

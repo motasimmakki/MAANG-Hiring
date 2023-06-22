@@ -63,6 +63,9 @@
     line-height: 0.8;
     overflow: hidden;
 }
+.empty-posting {
+    margin-right: 12px;
+}
 /* .item-title-cont {} */
 .company-icon {
     margin-right: 0.4rem;

@@ -11,13 +11,9 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [viewableData, setViewableData] = useState(data);
-  const [isFiltered, setIsFiltered] = useState(false);
   const [themeMode, toggleThemeMode] = useState(localStorage.getItem("themeMode") || "light");
   function updateData(newData) {
     setViewableData(newData);
-  }
-  function updateFilterStatus() {
-    setIsFiltered(true);
   }
   function updateThemeMode() {
     if(themeMode === "light") {
@@ -47,8 +43,8 @@ function App() {
       </div>
 
       <Navbar />
-      <Filter filteredData={viewableData} filterData={updateData} filterStatus={updateFilterStatus} />
-      <List data={viewableData} filterStatus={isFiltered} themeMode={themeMode}/>
+      <Filter filteredData={viewableData} filterData={updateData}/>
+      <List data={viewableData} themeMode={themeMode}/>
       <Footer />
     </div>
   );

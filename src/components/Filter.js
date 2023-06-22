@@ -2,7 +2,7 @@ import React from 'react'
 import data from '../../src/data.json';
 import { useState } from 'react';
 
-export default function Filter({ filteredData, filterData, filterStatus }) {
+export default function Filter({ filteredData, filterData }) {
   const [company, setCompany] = useState("maang");
   const [historyData, setHistoryData] = useState([]);
 
@@ -66,7 +66,6 @@ export default function Filter({ filteredData, filterData, filterStatus }) {
 
   const filterByCompany = (event) => {
     document.querySelector('.search-bar').value = '';
-    filterStatus(true);
     let selectedCompany = event.target.value;
     setCompany(selectedCompany);
     if (selectedCompany === "maang") {

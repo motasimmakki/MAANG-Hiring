@@ -3,7 +3,7 @@ import Items from './Items'
 import './Items.css';
 import { useEffect, useState } from 'react';
 
-export default function List({ data, filterStatus, themeMode }) {
+export default function List({ data, themeMode }) {
   // For change Theme.  
   useEffect(() => {
     const listCont_classes = document.getElementById('list-cont').classList;
@@ -58,7 +58,7 @@ export default function List({ data, filterStatus, themeMode }) {
         <div className='loader'>
           {
           (currTab === "all-jobs")? 
-            <Items data={data} filterStatus={filterStatus} themeMode={themeMode}/>
+            <Items data={data} themeMode={themeMode}/>
           :
             (interestList && !Object.keys(interestList).length)?
               <p>No Job Marked as Interested</p>
