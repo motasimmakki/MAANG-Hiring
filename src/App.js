@@ -7,12 +7,12 @@ import List from './components/List';
 import './components/List.css';
 import Footer from './components/Footer';
 import data from '../src/data.json';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [viewableData, setViewableData] = useState(data);
   const [isFiltered, setIsFiltered] = useState(false);
-  const [themeMode, toggleThemeMode] = useState("light");
+  const [themeMode, toggleThemeMode] = useState(localStorage.getItem("themeMode") || "light");
   function updateData(newData) {
     setViewableData(newData);
   }
@@ -27,10 +27,18 @@ function App() {
     }
     // console.log(themeMode);
   }
+  useEffect(() => {
+    localStorage.setItem("themeMode", themeMode);
+  }, [themeMode])
   return (
     <div className="App">
       <div className="container" onChange={updateThemeMode}>
-        <input type="checkbox" id="toggle" className="toggle-input"></input>
+        {  
+        (themeMode === "light")?
+          <input type="checkbox" id="toggle" className="toggle-input"></input>
+        :
+          <input type="checkbox" id="toggle" className="toggle-input" checked></input>
+        }
         <label for="toggle" className="toggle-label">
           <span className="label-text-left">Dark</span>
           <span className="toggle-slider"></span>
