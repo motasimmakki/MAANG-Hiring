@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function Filter({ filteredData, filterData }) {
   const [company, setCompany] = useState("all_jobs");
   const [location, setLocation] = useState("all_locations");
+  const [locationBasedJobs, setLocationBasedJobs] = useState({});
   const [historyData, setHistoryData] = useState([]);
 
   const disableDelete = (event) => {
@@ -22,7 +23,7 @@ export default function Filter({ filteredData, filterData }) {
     let keyword = event.target.value;
     // console.log(event.target.value);
     if (!keyword.length) {
-      if (company === "maang") {
+      if (company === "all_jobs") {
         filterData(data);
       } else {
         let newData = {}
@@ -71,21 +72,26 @@ export default function Filter({ filteredData, filterData }) {
     document.querySelector('.search-bar').value = '';
     let selectedCompany = event.target.value;
     setCompany(selectedCompany);
+    let dataSource = data;
     if(selectedCompany === "all_jobs") {
-      filterData(data);
+      filterData(dataSource);
+      document.querySelector('.filter-location').value = "all_locations";
     } else {
+      if(Object.keys(locationBasedJobs).length) {
+        dataSource = filteredData;
+      }
       let newData = {}
       if (selectedCompany === "maang") {
-        for(let key in data) {
+        for(let key in dataSource) {
           if(key === "meta" || key === "apple" || key === "amazon" || key === "netflix" || key === "google") {
-            if(data[key]) {
-              newData[key] = data[key];
+            if(dataSource[key]) {
+              newData[key] = dataSource[key];
             }
           }
         }
       } else {
-        if(data[selectedCompany]) {
-          newData[selectedCompany] = data[selectedCompany];
+        if(dataSource[selectedCompany]) {
+          newData[selectedCompany] = dataSource[selectedCompany];
         }
       }
       filterData(newData);
@@ -94,6 +100,7 @@ export default function Filter({ filteredData, filterData }) {
 
   const filterByLocation = (event) => {
     document.querySelector('.search-bar').value = '';
+    document.querySelector('.filter-company').value = "all_jobs";
     let selectedLocation = event.target.value;
     // console.log(selectedLocation);
     setLocation(selectedLocation);
@@ -103,8 +110,8 @@ export default function Filter({ filteredData, filterData }) {
       let newData = {};
       Object.keys(data).map((company) => {
         let job_title = [], job_posting = [], job_location = [], job_link = [];
-        data[company].job_location.filter((title, idx) => {
-          if (title.toLowerCase().includes(selectedLocation)) {
+        data[company].job_location.filter((location, idx) => {
+          if (location.toLowerCase().includes(selectedLocation)) {
             job_title.push(data[company].job_title[idx]);
             job_location.push(data[company].job_location[idx]);
             if (data[company].job_posting) {
@@ -128,6 +135,11 @@ export default function Filter({ filteredData, filterData }) {
       });
       // console.log(newData);
       filterData(newData);
+      if(selectedLocation === "all_locations") {
+        setLocationBasedJobs({});
+      } else {
+        setLocationBasedJobs(filteredData);
+      }
     }
   }
 
@@ -142,7 +154,7 @@ export default function Filter({ filteredData, filterData }) {
       <div className='dropdown-cont'>
         <div className='filter'>
           <i className="filter-icon fa  fa-list"></i>
-          <select className='dropdown filter-company' value={company} onChange={filterByCompany}>
+          <select className='dropdown filter-company' onChange={filterByCompany}>
             <option value="all_jobs">All Jobs</option>
             <option value="maang">MAANG</option>
             <option value="meta">Meta</option>
@@ -156,7 +168,7 @@ export default function Filter({ filteredData, filterData }) {
         </div>
         <div className='filter'>
           <i className="filter-icon fa fa-map-marker"></i>
-          <select className='dropdown filter-location' value={location} onChange={filterByLocation}>
+          <select className='dropdown filter-location' onChange={filterByLocation}>
             {/* <option value="" className=''>. . .</option> */}
             <option value="all_locations">All Locations</option>
             <option value="remote">Remote</option>
