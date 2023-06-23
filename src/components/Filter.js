@@ -106,6 +106,49 @@ export default function Filter({ filteredData, filterData }) {
     setLocation(selectedLocation);
     if(selectedLocation === "all_locations") {
       filterData(data);
+    } else if(selectedLocation === "outside_india") {
+      let newData = {};
+      Object.keys(data).map((company) => {
+        let job_title = [], job_posting = [], job_location = [], job_link = [];
+        data[company].job_location.filter((location, idx) => {
+          if (
+              !(location.toLowerCase().includes("mumbai")) &&
+              !(location.toLowerCase().includes("bangalore")) &&
+              !(location.toLowerCase().includes("bengaluru")) &&
+              !(location.toLowerCase().includes("hyderabad")) &&
+              !(location.toLowerCase().includes("chennai")) &&
+              !(location.toLowerCase().includes("pune")) &&
+              !(location.toLowerCase().includes("ahmedabad")) &&
+              !(location.toLowerCase().includes("india"))
+            ) {
+            job_title.push(data[company].job_title[idx]);
+            job_location.push(data[company].job_location[idx]);
+            if (data[company].job_posting) {
+              job_posting.push(data[company].job_posting[idx]);
+            }
+            job_link.push(data[company].job_link[idx]);
+          }
+          return true;
+        });
+        if(job_title.length) {
+          newData[company] = {
+            job_title,
+            job_location,
+            job_link
+          };
+          if (job_posting.length) {
+            newData[company] = { ...newData[company], job_posting };
+          }
+        }
+        return true;
+      });
+      // console.log(newData);
+      filterData(newData);
+      if(selectedLocation === "all_locations") {
+        setLocationBasedJobs({});
+      } else {
+        setLocationBasedJobs(filteredData);
+      }
     } else {
       let newData = {};
       Object.keys(data).map((company) => {
