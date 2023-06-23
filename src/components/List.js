@@ -60,12 +60,12 @@ export default function List({ data, themeMode }) {
           {
           (currTab === "all-jobs")? 
             (data && !Object.keys(data).length)?
-              <p classList="empty-msg">No Job Found As Per Selected Filter</p>
+              <p className="empty-msg">No Job Found As Per Selected Filter</p>
             :
               <Items data={data} themeMode={themeMode}/>
           :
             (interestList && !Object.keys(interestList).length)?
-              <p classList="empty-msg">No Job Marked As Interested</p>
+              <p className="empty-msg">No Job Marked As Interested</p>
             : 
               <InterestedItems themeMode={themeMode}/>
           }

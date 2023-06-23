@@ -49,6 +49,7 @@ export default function Filter({ filteredData, filterData }) {
               }
               job_link.push(filteredData[company].job_link[idx]);
             }
+            return true;
           });
           newData[company] = {
             job_title,
@@ -58,6 +59,7 @@ export default function Filter({ filteredData, filterData }) {
           if (job_posting.length) {
             newData[company] = { ...newData[company], job_posting };
           }
+          return true;
         });
         // console.log(newData);
         filterData(newData);
@@ -93,8 +95,40 @@ export default function Filter({ filteredData, filterData }) {
   const filterByLocation = (event) => {
     document.querySelector('.search-bar').value = '';
     let selectedLocation = event.target.value;
-    console.log(selectedLocation);
+    // console.log(selectedLocation);
     setLocation(selectedLocation);
+    if(selectedLocation === "all_locations") {
+      filterData(data);
+    } else {
+      let newData = {};
+      Object.keys(data).map((company) => {
+        let job_title = [], job_posting = [], job_location = [], job_link = [];
+        data[company].job_location.filter((title, idx) => {
+          if (title.toLowerCase().includes(selectedLocation)) {
+            job_title.push(data[company].job_title[idx]);
+            job_location.push(data[company].job_location[idx]);
+            if (data[company].job_posting) {
+              job_posting.push(data[company].job_posting[idx]);
+            }
+            job_link.push(data[company].job_link[idx]);
+          }
+          return true;
+        });
+        if(job_title.length) {
+          newData[company] = {
+            job_title,
+            job_location,
+            job_link
+          };
+          if (job_posting.length) {
+            newData[company] = { ...newData[company], job_posting };
+          }
+        }
+        return true;
+      });
+      // console.log(newData);
+      filterData(newData);
+    }
   }
 
   return (

@@ -55,8 +55,8 @@ export default function InterestedItems({ themeMode }) {
                                     <h3 className='item-location light'>{interestList[company].job_location}</h3>
                                 </div>
                             </a>
-                            <button class="delete-button">
-                                <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" onClick={() => removeJob(company, idx)}>
+                            <button className="delete-button">
+                                <svg className="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" onClick={() => removeJob(company, idx)}>
                                     <path d="M0 0h24v24H0z" fill="none" />
                                     <path d="M6 18a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v11zM19 3h-3L16 2H8L7 3H4v2h15V3z" />
                                 </svg>
@@ -88,8 +88,8 @@ export default function InterestedItems({ themeMode }) {
                                 <h3 className='item-location'>{interestList[company].job_location}</h3>
                             </div>
                         </a>
-                        <button class="delete-button">
-                            <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" onClick={() => removeJob(company, idx)}>
+                        <button className="delete-button">
+                            <svg className="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" onClick={() => removeJob(company, idx)}>
                                 <path d="M0 0h24v24H0z" fill="none" />
                                 <path d="M6 18a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v11zM19 3h-3L16 2H8L7 3H4v2h15V3z" />
                             </svg>
