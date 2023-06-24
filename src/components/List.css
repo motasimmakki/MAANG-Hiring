@@ -18,6 +18,7 @@
 .loader:empty {
   width: 5em;
   height: 5em;
+  margin-top: 70px;
   border: 1em solid rgba(0, 0, 0, 0.2);
   border-left: 1em solid #000000;
   border-radius: 50%;
@@ -76,6 +77,16 @@
   flex-direction: row;
   /* zoom: 85%; */
 }
+
+/* ------------------- Empty msg ----------------- */
+.empty-msg{
+  font-size: 1.2rem;
+  margin: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: red;
+ /* filter: drop-shadow( 2px 2px 1px 0px blue); */
+}
+
 @keyframes load8 {
   0% {
     transform: rotate(0deg);
