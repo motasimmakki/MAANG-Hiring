@@ -88,7 +88,7 @@
 }
 
 /* -------------------- curves-------------------- */
-/* .border-outer-all-jobs{
+.border-outer-all-jobs{
   position: absolute;
   z-index: 11;
   width: 23px;
@@ -99,12 +99,12 @@
   box-shadow: -9px 0 0 #202124;
   border-bottom-left-radius: 50%;
 }
-.border-outer-all-jobs.light {
+/* .border-outer-all-jobs.light {
   box-shadow: -9px 0 0 #fff;
 } */
 
 /* ------------- Interested curve------------------- */
-.border-outer-interested{
+/* .border-outer-interested{
   position: absolute;
   z-index: 11;
   width: 24px;
@@ -118,7 +118,7 @@
 
 .border-outer-interested.light{
   box-shadow: 14px 0 0 #fff;
-}
+} */
 @keyframes load8 {
   0% {
     transform: rotate(0deg);
