@@ -87,6 +87,38 @@
  /* filter: drop-shadow( 2px 2px 1px 0px blue); */
 }
 
+/* -------------------- curves-------------------- */
+/* .border-outer-all-jobs{
+  position: absolute;
+  z-index: 11;
+  width: 23px;
+  height: 20px;
+  top:10px;
+  left:252px;
+  background-color: transparent;
+  box-shadow: -9px 0 0 #202124;
+  border-bottom-left-radius: 50%;
+}
+.border-outer-all-jobs.light {
+  box-shadow: -9px 0 0 #fff;
+} */
+
+/* ------------- Interested curve------------------- */
+.border-outer-interested{
+  position: absolute;
+  z-index: 11;
+  width: 24px;
+  height: 20px;
+  top:10px;
+  left:229.5px;
+  background-color: transparent;
+  box-shadow: 15px 0 0 #202124;
+  border-bottom-right-radius: 50%;
+}
+
+.border-outer-interested.light{
+  box-shadow: 14px 0 0 #fff;
+}
 @keyframes load8 {
   0% {
     transform: rotate(0deg);
