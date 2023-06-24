@@ -65,8 +65,8 @@
     align-items: center;
 }
 .filter-icon{
-    flex-basis: 50px;
-    padding-left: 8px;
+    flex-basis: 45px;
+    padding-left: 15px;
 }
 .filter-company,.filter-location{
     flex-basis: 170px;
