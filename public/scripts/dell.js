@@ -4,46 +4,41 @@ const fs = require('fs');
 async function scrapVacancies(url) {
     const browser = await puppeteer.launch();
     let page = await browser.newPage();
+    await page.setDefaultNavigationTimeout(0);
     await page.goto(url);
 
-    let job_title = [], job_location = [], 
-        job_posting = [], job_link = [];
+    let job_title = [], job_location = [], job_link = [];
 
     do {
         // Extracting job titles.
-        job_title = [...job_title, ...(await page.$$eval(".job-title", 
+        await page.waitForSelector('#search-results-list li h2');
+        job_title = [...job_title, ...(await page.$$eval("#search-results-list li h2", 
             element => element.map(
                 title => title.textContent.trim()
             )
         ))];
         // console.log(job_title);
-    
+            
         // Extracting Job_location.
-        job_location = [...job_location, ...(await page.$$eval(".location-and-id", 
+        await page.waitForSelector('#search-results-list .job-location-search');
+        job_location = [...job_location, ...(await page.$$eval("#search-results-list .job-location-search", 
             element => element.map(
                 location => location.textContent.trim()
             )
         ))];
         // console.log(job_location);
-    
-        // Extracting Job posting date.
-        job_posting = [...job_posting, ...(await page.$$eval(".posting-date", 
-            element => element.map(
-                posting => posting.textContent.trim()
-            )
-        ))];
-        // console.log(job_posting);
-    
+                
         // Extracting job link.
-        job_link = [...job_link, ...(await page.$$eval(".job-link", 
+        await page.waitForSelector('#search-results-list a:not(.prev):not(.next):not(.pagination-show-all)');
+        job_link = [...job_link, ...(await page.$$eval("#search-results-list a:not(.prev):not(.next):not(.pagination-show-all)", 
             element => element.map(
-                link => "https://www.amazon.jobs" + link.getAttribute("href")
+                link => "https://jobs.dell.com/" + link.getAttribute("href")
             )
         ))];
         // console.log(job_link);
 
-        if(await page.$(".pagination-control>.btn.circle.right")) {
-            await page.click(".pagination-control>.btn.circle.right");
+        if(await page.$("#search-results-list a.next:not(.disabled)")) {
+            await page.click("#search-results-list a.next:not(.disabled)");
             await page.goto(page.url());
         } else {
             break;
@@ -55,15 +50,20 @@ async function scrapVacancies(url) {
     return {
         job_title, 
         job_location, 
-        job_posting,
         job_link
     };
 }
 
-scrapVacancies('https://www.amazon.jobs/en/teams/in').then((data) => {
+// async function print() {
+//     let dell = await scrapVacancies('https://jobs.dell.com/category/new-graduates-jobs/375/55394/1');
+//     console.log(dell);
+// }
+// print();
+
+scrapVacancies('https://jobs.dell.com/category/new-graduates-jobs/375/55394/1').then((data) => {
     const fileData = fs.readFileSync('./src/data.json');
     // console.log(fileData.length);
-    let newDataJSON = {amazon: data};
+    let newDataJSON = {dell: data};
     if(fileData.length) {
         newDataJSON = {...newDataJSON, ...(JSON.parse(fileData))};
     }
@@ -74,7 +74,7 @@ scrapVacancies('https://www.amazon.jobs/en/teams/in').then((data) => {
             console.log(error);
         }
     });
-    console.log("[Amazon] Data Saved Successfully!");
+    console.log("[Dell] Data Saved Successfully!");
 }).catch((error) => {
     console.log(error);
 });

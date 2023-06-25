@@ -7,6 +7,7 @@ import netflixLogo from '../images/netflix.png';
 import googleLogo from '../images/google.png';
 import adobeLogo from '../images/adobe.png';
 import oracleLogo from '../images/oracle.png';
+import dellLogo from '../images/dell.png';
 
 export default function InterestedItems({ themeMode }) {
     const logoPaths = {
@@ -16,7 +17,8 @@ export default function InterestedItems({ themeMode }) {
         netflix: netflixLogo,
         google: googleLogo,
         adobe: adobeLogo,
-        oracle: oracleLogo
+        oracle: oracleLogo,
+        dell: dellLogo
     }
     const [interestList, updateInterestedList] = useState(JSON.parse(localStorage.getItem("interestedJobs")));
     function removeJob(companyKey, idx) {
