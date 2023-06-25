@@ -207,6 +207,7 @@ export default function Filter({ filteredData, filterData }) {
             <option value="google">Google</option>
             <option value="adobe">Adobe</option>
             <option value="oracle">Oracle</option>
+            <option value="dell">Dell</option>
           </select>
         </div>
         <div className='filter'>
