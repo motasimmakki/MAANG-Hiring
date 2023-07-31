@@ -10,17 +10,17 @@ async function scrapVacancies(url) {
 
     do {
         // Extracting job titles.
-        await page.waitForSelector('.gc-card__title');
-        job_title = [...job_title, ...(await page.$$eval(".gc-card__title", 
+        await page.waitForSelector('.spHGqe .QJPWVe');
+        job_title = [...job_title, ...(await page.$$eval(".spHGqe .QJPWVe", 
             element => element.map(
                 title => title.textContent.trim()
             )
         ))];
         // console.log(job_title);
     
-        // Extracting Job_id.
-        await page.waitForSelector('.gc-job-tags');
-        job_location = [...job_location, ...(await page.$$eval('.gc-job-tags', 
+        // Extracting Job_locations.
+        await page.waitForSelector('.l103df .r0wTof:first-child');
+        job_location = [...job_location, ...(await page.$$eval('.l103df .r0wTof:first-child', 
             element => element.map(
                 location => location.textContent.trim()
             )
@@ -31,19 +31,19 @@ async function scrapVacancies(url) {
         // console.log(job_location);
     
         // Extracting job link.
-        await page.waitForSelector('.gc-card__container>.gc-card');
-        job_link = [...job_link, ...(await page.$$eval(".gc-card__container>.gc-card", 
+        await page.waitForSelector('.VfPpkd-dgl2Hf-ppHlrf-sM5MNb .VfPpkd-LgbsSe a');
+        job_link = [...job_link, ...(await page.$$eval(".VfPpkd-dgl2Hf-ppHlrf-sM5MNb .VfPpkd-LgbsSe a", 
             element => element.map(
                 title => "https://careers.google.com" + title.getAttribute("href")
             )
         ))];
         // console.log(job_link);
 
-        await page.waitForSelector('a[data-gtm-ref="search-results-next-click"]');
-        if(await page.$('a[data-gtm-ref="search-results-next-click"][style="display: none;"]')) {
+        await page.waitForSelector('button[aria-label="Go to next page"]');
+        if(await page.$('button[aria-label="Go to next page"][disabled]')) {
             break;
         } else {
-            await page.click('a[data-gtm-ref="search-results-next-click"]');
+            await page.click('button[aria-label="Go to next page"]');
             await page.goto(page.url());
         }
     } while(true);
