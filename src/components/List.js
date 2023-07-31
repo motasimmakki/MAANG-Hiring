@@ -95,7 +95,7 @@ export default function List({ data, themeMode }) {
                 :
                 <Items data={data} themeMode={themeMode} />
               :
-              (interestList && !Object.keys(interestList).length) ?
+              ((!interestList) || (!Object.keys(interestList).length)) ?
                 <p className="empty-msg">No Job Marked As Interested</p>
                 :
                 <InterestedItems themeMode={themeMode} />

@@ -36,7 +36,7 @@ export default function Items({ data, themeMode }) {
         setIsLoading(true);
         waitForAWhile(1000).then(() => setIsLoading(false));
     }, [data]);
-    const [interestList, updateInterestedList] = useState(JSON.parse(localStorage.getItem("interestedJobs")));
+    const [interestList, updateInterestedList] = useState(JSON.parse(localStorage.getItem("interestedJobs")) || {});
     function addToInterested (company, idx, item) {
         // console.log(item);
         item.classList.add("scale-click");
